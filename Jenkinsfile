@@ -2,9 +2,15 @@ pipeline {
   agent any
   stages {
     stage('test stage') {
-      agent any
+      agent {
+        docker {
+          image 'angular/ngcontainer:latest'
+        }
+
+      }
       steps {
-        sh 'echo \'hello world\''
+        sh '''echo \'hello world\'
+ls'''
       }
     }
 
