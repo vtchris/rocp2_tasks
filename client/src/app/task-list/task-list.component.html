@@ -1,8 +1,13 @@
 <h2>Tasks To Do</h2>
+
+
 <ul class="todos">
     <li *ngFor="let todo of todos">{{todo.id}} : {{todo.title}}
-        <div>{{todo.createdOn}}, {{todo.completed}}</div> </li>
+        <div>{{todo.createdOn}}, {{todo.completed}}</div> 
+        <button class="delete" title="delete todo"
+            (click)="delete(todo)">X</button>
     
+    </li>
 </ul>
 <!-- each task has the four following properties:
 id: number;

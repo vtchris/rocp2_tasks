@@ -9,10 +9,10 @@ import { Todo } from '../models/Todo';
 })
 export class TaskListComponent implements OnInit {
 
-  todos : Todo[];
-  
+  todos: Todo[];
 
-  constructor(private ts : TaskService) { }
+
+  constructor(private ts: TaskService) { }
 
   ngOnInit(): void {
     this.getTodos();
@@ -20,6 +20,20 @@ export class TaskListComponent implements OnInit {
 
   getTodos(): void {
     this.ts.getTodos()
-        .subscribe(todos => this.todos = todos);
+      .subscribe(todos => this.todos = todos);
+  }
+
+  add(todo: Todo): void {
+    todo.title = todo.title.trim();
+    if (!todo.title) { return; }
+    this.ts.addTodo(todo)
+        .subscribe(todo => {
+          this.todos.push(todo);
+        });
+  }
+
+  delete(todo: Todo): void {
+    this.todos = this.todos.filter(t => t !== todo)
+    this.ts.deleteTodo(todo).subscribe();
   }
 }
