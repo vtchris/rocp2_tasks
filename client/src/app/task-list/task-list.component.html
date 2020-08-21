@@ -3,13 +3,14 @@
 <div>
     <label>Task To Do: </label>
     <input #taskTodo/>
-    <button (click)="add(taskTodo.values); taskTodo.values=''">add</button>
+    <button (click)="add(taskTodo.value); taskTodo.value=''">add</button>
 </div>
 
 <ul class="todos">
-    <li *ngFor="let todo of todos">{{todo.id}} : {{todo.title}}
+    <li *ngFor="let todo of todos"> {{todo.id}} : {{todo.title}}
+        <!--  -->
         <div>{{todo.createdOn}}, {{todo.completed}}</div> 
-        <button class="delete" title="delete todo"
+        <button class="btn btn-danger" title="delete todo"
             (click)="delete(todo)">X</button>
     
     </li>

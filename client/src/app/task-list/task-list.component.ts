@@ -23,17 +23,26 @@ export class TaskListComponent implements OnInit {
       .subscribe(todos => this.todos = todos);
   }
 
-  add(todo: Todo): void {
-    // todo.title = todo.title.trim();
-    // if (!todo.title) { return; }
-    this.ts.addTodo(todo)
-        .subscribe(todo => {
-          this.todos.push(todo);
-        });
-  }
+  add(task: string): void {
+    task = task.trim();
+    if (!task) { return; }
+    let todoJSON: Todo = {
+      "id": 0,
+      "title": task,
+      "createdOn": null,
+      "completed": false
+    };
 
-  delete(todo: Todo): void {
-    this.todos = this.todos.filter(t => t !== todo)
+    this.ts.addTodo(todoJSON)
+      .subscribe(todo => {
+        this.getTodos()
+      });
+
+}
+
+
+delete (todo: Todo): void {
+  this.todos = this.todos.filter(t => t !== todo)
     this.ts.deleteTodo(todo).subscribe();
-  }
+}
 }
