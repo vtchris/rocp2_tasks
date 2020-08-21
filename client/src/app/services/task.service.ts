@@ -30,6 +30,10 @@ export class TaskService {
     return this.http.get<Todo[]>(this.url);
   }
 
+  updateTodo(todo: Todo): Observable<any>{
+    return this.http.put<Todo>(`${this.url}/${todo.id}`,this.httpHeader);
+  }
+
   
 
 }
