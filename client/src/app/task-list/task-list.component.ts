@@ -24,8 +24,8 @@ export class TaskListComponent implements OnInit {
   }
 
   add(todo: Todo): void {
-    todo.title = todo.title.trim();
-    if (!todo.title) { return; }
+    // todo.title = todo.title.trim();
+    // if (!todo.title) { return; }
     this.ts.addTodo(todo)
         .subscribe(todo => {
           this.todos.push(todo);

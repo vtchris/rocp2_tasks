@@ -1,5 +1,10 @@
 <h2>Tasks To Do</h2>
 
+<div>
+    <label>Task To Do: </label>
+    <input #taskTodo/>
+    <button (click)="add(taskTodo.values); taskTodo.values=''">add</button>
+</div>
 
 <ul class="todos">
     <li *ngFor="let todo of todos">{{todo.id}} : {{todo.title}}
