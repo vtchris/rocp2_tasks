@@ -1,1 +1,11 @@
-<p>task-list works!</p>
+<h2>Tasks To Do</h2>
+<ul class="todos">
+    <li *ngFor="let todo of todos">{{todo.id}} : {{todo.title}}
+        <div>{{todo.createdOn}}, {{todo.completed}}</div> </li>
+    
+</ul>
+<!-- each task has the four following properties:
+id: number;
+title: string;
+createdOn: Date;
+completed: boolean;     -->
