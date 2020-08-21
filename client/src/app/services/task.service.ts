@@ -12,7 +12,8 @@ export class TaskService {
 
   httpHeader = {
     headers: new HttpHeaders({
-      'Content-Type':'application/json'
+      'Content-Type':'application/json',
+      'Access-Control-Allow-Origin': '*'
     })
   }
 
@@ -26,10 +27,16 @@ export class TaskService {
     return this.http.delete(`${this.url}/${todo.id}`,this.httpHeader);
   }
 
+  findTodo(todo: Todo):Observable<any>{
+    return this.http.get(`${this.url}/${todo.id}`);
+  }
+  
   getTodos(): Observable<Todo[]>{
     return this.http.get<Todo[]>(this.url);
   }
 
-  
+  updateTodo(todo: Todo): Observable<any> {  
+    return this.http.put(`${this.url}`,todo,this.httpHeader)
+  }  
 
 }
