@@ -9,7 +9,8 @@ pipeline {
 
       }
       steps {
-        sh '''npm i 
+        sh '''cd client
+npm i 
 npm run build'''
       }
     }
