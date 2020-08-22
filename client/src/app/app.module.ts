@@ -10,6 +10,7 @@ import { TaskListComponent } from './task-list/task-list.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NavbarLinkComponent } from './navbar/navbar-link/navbar-link.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { TaskDetailComponent } from './task-detail/task-detail.component';
 // import { TaskComponent } from './dev/task/task.component';
 
 @NgModule({
@@ -18,7 +19,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     TaskListComponent,
     NavbarComponent,
     NavbarLinkComponent,
-    DashboardComponent, 
+    DashboardComponent,
+    TaskDetailComponent, 
   ],
   imports: [
     BrowserModule,
