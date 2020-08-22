@@ -8,10 +8,9 @@
 
 <ul class="todos">
     <li *ngFor="let todo of todos"> 
-        <div>id: {{todo.id}} <button class="btn btn-danger" title="delete todo"
+        <div>Created on {{todo.createdOn}} <button class="btn btn-danger" title="delete todo"
             (click)="delete(todo)">X</button> </div>
         <div>task: {{todo.title}} </div> 
-        <div>created on {{todo.createdOn}}</div> 
         <div>completed: {{todo.completed}}  
         </div> 
     </li>
