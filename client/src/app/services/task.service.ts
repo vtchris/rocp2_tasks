@@ -27,8 +27,8 @@ export class TaskService {
     return this.http.delete(`${this.url}/${todo.id}`,this.httpHeader);
   }
 
-  findTodo(todo: Todo):Observable<any>{
-    return this.http.get(`${this.url}/${todo.id}`);
+  findTodo(id:number):Observable<any>{
+    return this.http.get(`${this.url}/${id}`);
   }
   
   getTodos(): Observable<Todo[]>{
