@@ -1,1 +1,11 @@
 <p>task-detail works!</p>
+<h2>{{todo.title | uppercase}} Details</h2>
+<div>
+    <label>Task: 
+        <input [(ngModel)]="todo.title" placeholder="title" />
+    </label>
+</div>
+<!-- on click want to call goBack() function -->
+<button (click)="goBack()">go back</button>
+<!-- on click want to call save() function -->
+<button (click)="save()">save</button>
