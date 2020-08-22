@@ -21,14 +21,13 @@ export class TaskDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTodo();
-    // this.getTodo();
   }
 
   getTodo(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    console.log('Once the getTodo function is up, this will work properly!');
-    // this.ts.findTodo(id)
-    //     .subscribe(todo => this.todo = todo);
+    // console.log('Once the getTodo function is up, this will work properly!');
+    this.ts.findTodo(id)
+        .subscribe(todo => this.todo = todo);
   }
 
   goBack(): void {
