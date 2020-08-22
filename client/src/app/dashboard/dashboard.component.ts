@@ -24,6 +24,8 @@ export class DashboardComponent implements OnInit {
       this.upcomingTasks = 
       upcomingTasks
         .filter(task => !task.completed)  //Finds only incomplete tasks
+        .sort((a, b) => (a.createdOn > b.createdOn) ? 1 : -1) //sorts list by creation date (oldest first). 
+        //TODO: sort by due date instead
         .slice(0,5));   //Takes top 5 tasks from filtered list
   }
 
