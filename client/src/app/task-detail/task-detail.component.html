@@ -1,1 +1,16 @@
-<p>task-detail works!</p>
+<!-- <p>task-detail works!</p> -->
+<div *ngIf="todo">
+    <h2>{{todo.title | uppercase}} Details</h2>
+    <div><span>id: </span>{{todo.id}}</div>
+    <div>
+        <label>Task:
+            <input [(ngModel)]="todo.title" placeholder="title" />
+        </label>
+    </div>
+    <div><span>completed: </span>{{todo.completed}}</div>
+    <div><span>created On: </span>{{todo.createdOn}}</div>
+    <!-- on click want to call goBack() function -->
+    <button (click)="goBack()">go back</button>
+    <!-- on click want to call save() function -->
+    <button (click)="save()">save</button>
+</div>
