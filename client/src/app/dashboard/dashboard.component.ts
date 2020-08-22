@@ -20,7 +20,11 @@ export class DashboardComponent implements OnInit {
 
   getUpcomingTasks(): void {
     this.taskService.getTodos()
-    .subscribe(upcomingTasks => this.upcomingTasks = upcomingTasks.slice(0,5));
+    .subscribe(upcomingTasks => 
+      this.upcomingTasks = 
+      upcomingTasks
+        .filter(task => !task.completed)  //Finds only incomplete tasks
+        .slice(0,5));   //Takes top 5 tasks from filtered list
   }
 
   markCompleted(task: Todo): void {
