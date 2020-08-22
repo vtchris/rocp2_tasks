@@ -27,7 +27,7 @@ export class TaskDetailComponent implements OnInit {
   getTodo(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     console.log('Once the getTodo function is up, this will work properly!');
-    // this.ts.getTodo(id)
+    // this.ts.findTodo(id)
     //     .subscribe(todo => this.todo = todo);
   }
 
