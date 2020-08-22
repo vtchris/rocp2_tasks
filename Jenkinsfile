@@ -8,6 +8,9 @@ pipeline {
         }
 
       }
+      when  {         
+        expression { env.BRANCH_NAME == 'master' || env.CHANGE_TARGET == 'master' }       
+      }
       steps {
         sh '''cd client
 npm i 
