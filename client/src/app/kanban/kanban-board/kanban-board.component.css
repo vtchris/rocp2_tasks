@@ -1,0 +1,10 @@
+.col-lg {
+    background-color: lightgray;
+    border-radius: 4px;
+    margin: 5px;
+    padding: 5px;
+}
+
+.offset-1 {
+    width: 15px;
+}

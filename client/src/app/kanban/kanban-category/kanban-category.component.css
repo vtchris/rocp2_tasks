@@ -1,0 +1,13 @@
+.kanban-card {
+    background-color: #EEE;
+    border-radius: 4px;
+    margin: 1.5em;
+    padding: 2em, 0;
+    width: 90%;
+}
+
+.kanban-card:hover {
+    color: #607D8B;
+    background-color: #DDD;
+}
+
