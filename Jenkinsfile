@@ -32,7 +32,7 @@ cp dist/client/* /deploy'''
 
       }
       steps {
-        sh 'aws s3 cp /deploy s3://tasker-bucket --recusive --acl public-read '
+        sh 'aws s3 cp /deploy s3://tasker-bucket --recursive --acl public-read '
       }
     }
 
