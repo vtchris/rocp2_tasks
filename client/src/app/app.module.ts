@@ -11,6 +11,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { NavbarLinkComponent } from './navbar/navbar-link/navbar-link.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TaskDetailComponent } from './task-detail/task-detail.component';
+import { TaskSearchComponent } from './task-search/task-search.component';
 // import { TaskComponent } from './dev/task/task.component';
 
 @NgModule({
@@ -20,7 +21,8 @@ import { TaskDetailComponent } from './task-detail/task-detail.component';
     NavbarComponent,
     NavbarLinkComponent,
     DashboardComponent,
-    TaskDetailComponent, 
+    TaskDetailComponent,
+    TaskSearchComponent, 
   ],
   imports: [
     BrowserModule,
