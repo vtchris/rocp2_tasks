@@ -1,0 +1,12 @@
+<div class="category">
+<h4>{{ category }}</h4>
+<ul class="list-group">
+    <li *ngFor="let task of tasks"
+        class="kanban-card">
+        <a routherLink="kanban/{{task.id}}">{{task.title}}</a>
+        <select [(ngModel)]="task.category" style="display: inline-block">
+            <option *ngFor="let category of categoryOptions" [value]="key" [lable]="categories[key]"></option>
+        </select>
+    </li>
+</ul>
+</div>

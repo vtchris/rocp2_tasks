@@ -13,6 +13,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { TaskDetailComponent } from './task-detail/task-detail.component';
 // import { TaskComponent } from './dev/task/task.component';
 
+import { KanbanModule } from './kanban/kanban.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +30,7 @@ import { TaskDetailComponent } from './task-detail/task-detail.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    KanbanModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
