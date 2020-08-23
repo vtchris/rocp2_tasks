@@ -3,9 +3,9 @@
 
     <input #searchBox id="search-box" (input)="search(searchBox.value)" />
 
-    <ul class="search-result">
+    <ul class="">
         <li *ngFor="let todo of todo$ | async" >
-            <a routerLink="/detail/{{todo.id}}">
+            <a routerLink="/todos/{{todo.id}}">
                 {{todo.title}}
             </a>
         </li>
