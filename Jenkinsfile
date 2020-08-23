@@ -19,7 +19,7 @@ pipeline {
         sh '''cd client
 npm i 
 npm run build
-cp dist/tasker-bucket/* /deploy'''
+cp dist/rocp2_tasks/* /deploy'''
       }
     }
 
