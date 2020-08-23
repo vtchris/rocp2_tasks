@@ -36,7 +36,7 @@ export const KBTASKS = [
                 tag: "ToDo"
             },
             {   id: 1006, 
-                title: "One last task, I promise!", 
+                title: "And one task with a really long title just to check how it looks on the cards and stuff", 
                 createdOn: new Date("2020-08-22"), 
                 completed: false, 
                 tag: "ToDo"
