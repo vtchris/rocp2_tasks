@@ -1,9 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { categories } from '../categories-enum';
 
+import { categories } from '../categories-enum';
 import { Todo } from '../../models/Todo';
 import { TaskService } from '../../services/task.service';
 
+import { KBTASKS } from '../kanban-tasks-demo';
 @Component({
   selector: 'app-kanban-category',
   templateUrl: './kanban-category.component.html',
@@ -14,7 +15,8 @@ export class KanbanCategoryComponent implements OnInit {
   @Input() category: categories;
   private categories = categories;
   categoryOptions = [];
-  tasks: Todo[] = [];
+  //tasks: Todo[] = [];
+  tasks: Todo[] = KBTASKS;
 
   constructor(private taskService: TaskService) { }
 
@@ -24,12 +26,12 @@ export class KanbanCategoryComponent implements OnInit {
   }
 
   getKanbanTasks(): void{
-    this.taskService.getTodos()
-      .subscribe(tasks =>
-        this.tasks = 
-        tasks
-          .filter(task => task.category === this.category)); 
+    //this.taskService.getTodos()
+      //.subscribe(tasks => 
+        this.tasks = this.tasks
+          .filter(task => task.tag === this.category); 
           //TODO: update with actual API property
+          
   }
 
 }

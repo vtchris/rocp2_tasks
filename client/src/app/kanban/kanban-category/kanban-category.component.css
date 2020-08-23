@@ -4,6 +4,7 @@
     margin: 1.5em;
     padding: 2em, 0;
     width: 90%;
+    list-style: none;
 }
 
 .kanban-card:hover {
