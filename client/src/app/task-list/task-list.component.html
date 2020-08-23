@@ -1,0 +1,23 @@
+<h2>Tasks To Do</h2>
+
+<div>
+    <label>Task To Do: </label>
+    <input #taskTodo/>
+    <button (click)="add(taskTodo.value); taskTodo.value=''">add</button>
+</div>
+
+<ul class="todos">
+    <li *ngFor="let todo of todos"> 
+        <div> <button class="btn btn-danger" title="delete todo"
+            (click)="delete(todo)">X</button> </div>
+        <div>task: {{todo.title}} </div> 
+        <div>Created on {{todo.createdOn}}</div>
+        <div>completed: {{todo.completed}}  
+        </div> 
+    </li>
+</ul>
+<!-- each task has the four following properties:
+id: number;
+title: string;
+createdOn: Date;
+completed: boolean;      -->

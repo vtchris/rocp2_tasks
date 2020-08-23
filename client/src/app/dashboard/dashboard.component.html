@@ -1,0 +1,12 @@
+<h2>Upcoming Tasks</h2>
+<ul class="list-group">
+
+    <li *ngFor="let task of upcomingTasks" 
+        class="list-group-item list-group-item-action">
+        <input type="checkbox" class="form-check-input" 
+        [(ngModel)]="task.completed" 
+        (change)="markCompleted(task)"> 
+        <span><a routerLink="/todos/{{task.id}}"><b>{{task.title}}</b></a></span>
+        <span style="margin-left: 20px;">Due On: {{task.createdOn}}</span>
+    </li>
+</ul>
