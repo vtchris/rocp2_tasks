@@ -75,11 +75,11 @@ export class TaskListComponent implements OnInit {
     switch(sort) {
       case "Oldest First":
         this.ts.getTodos().subscribe(todos =>
-          this.todos = todos.sort((a, b) => (a.createdOn > b.createdOn) ? 1 : -1));
+          this.todos = todos.sort((a, b) => (a.createdOn < b.createdOn) ? 1 : -1));
           break;
       case "Newest First":
         this.ts.getTodos().subscribe(todos =>
-          this.todos = todos.sort((a, b) => (a.createdOn < b.createdOn) ? 1 : -1));
+          this.todos = todos.sort((a, b) => (a.createdOn > b.createdOn) ? 1 : -1));
           break;
       default:
         this.getTodos();
