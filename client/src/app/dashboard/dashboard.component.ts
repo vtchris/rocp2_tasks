@@ -1,4 +1,4 @@
-import { Component, OnInit, NgModule } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 
 import { Todo } from '../models/Todo';
@@ -11,6 +11,7 @@ import { TaskService } from '../services/task.service';
 })
 export class DashboardComponent implements OnInit {
   upcomingTasks: Todo[] = [];
+  today: Date = new Date();
 
   constructor(private taskService: TaskService) { }
 
