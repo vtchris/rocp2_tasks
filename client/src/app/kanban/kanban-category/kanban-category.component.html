@@ -3,10 +3,10 @@
     <ul class="list-group">
         <li *ngFor="let task of tasks" class="kanban-card">
             <span><a routerLink="/kanban/{{task.id}}"><b>{{ task.title }}</b></a></span><br />
-            {{ task.tag }} {{ category }}
+            {{ task.category }} {{ category }}
             <br />
-            <select [(ngModel)]="task.tag">
-                <option *ngFor="let category of categoryOptions" [value]="category" [label]="category">{{task.tag}}
+            <select [(ngModel)]="task.category">
+                <option *ngFor="let category of categoryOptions" [value]="category" [label]="category">{{task.category}}
                 </option>
             </select>
         </li>
