@@ -19,7 +19,20 @@ pipeline {
         sh '''cd client
 npm i 
 npm run build
-cp dist/rocp2_tasks/* /deploy'''
+cp dist/client/* /deploy'''
+      }
+    }
+
+    stage('Deploy to S3') {
+      agent {
+        docker {
+          image 'amazon/aws-cli'
+          args '--mount type=bind,source=/home/ec2-user/deploy,target=/deploy --interactive --entrypoint=""'
+        }
+
+      }
+      steps {
+        sh 'aws s3 cp /deploy s3://tasker-bucket --recursive --acl public-read '
       }
     }
 
