@@ -2,8 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Todo } from '../models/Todo';
-import { TodoSearch } from '../models/TodoSearch';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -42,17 +41,17 @@ export class TaskService {
     return this.http.put(`${this.url}`,todo,this.httpHeader)
   }  
 
-  searchTodos(term: string): Observable<TodoSearch[]> {
+  searchTodos(term: string): Observable<Todo[]> {
+    
     if (!term.trim()) {
       // if not search term, return empty todo array
       return of([]);      
     }
-    return this.http.get<TodoSearch[]>(`${this.url}/?name=${term}`).pipe(
-      tap(x => x.length ?
-        console.log(`found todos matching "${term}"`) :
-        console.log(`no todos matching "${term}"`)),
-      catchError(this.handleError<TodoSearch[]>('searchTodos', []))
-    );
+    
+    return this.http.get<Todo[]>(`${this.url}`).pipe(         
+      map(x => x.filter(t=> t.title.match(new RegExp(term,'gi')))),
+      catchError(this.handleError<Todo[]>('searchTodos', []))
+    );   
   }
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
-import { TodoSearch } from './../models/TodoSearch';
+import { Todo } from './../models/Todo';
 import { TaskService } from '../services/task.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { TaskService } from '../services/task.service';
   styleUrls: ['./task-search.component.css']
 })
 export class TaskSearchComponent implements OnInit {
-  todo$: Observable<TodoSearch[]>;
+  todo$: Observable<Todo[]>;
   private searchTerms = new Subject<string>();
 
   constructor(private taskService: TaskService) { }
