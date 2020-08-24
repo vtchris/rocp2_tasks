@@ -1,14 +1,21 @@
-<h2>Upcoming Tasks</h2>
-<ul class="list-group">
+<div class="container-fluid">
+    <div class="row no-gutters">
+        <div class="col">
+            <h2>Upcoming Tasks</h2>
+            <h5>Today is {{today | date: 'fullDate'}}</h5>
+            <ul class="list-group">
 
-    <li *ngFor="let task of upcomingTasks" 
-        class="list-group-item list-group-item-action">
-        <input type="checkbox" class="form-check-input" 
-        [(ngModel)]="task.completed" 
-        (change)="markCompleted(task)"> 
-        <span><a routerLink="/todos/{{task.id}}"><b>{{task.title}}</b></a></span>
-        <span style="margin-left: 20px;">Due On: {{task.createdOn}}</span>
-    </li>
-</ul>
-
-<app-task-search></app-task-search>
+                <li *ngFor="let task of upcomingTasks" class="list-group-item list-group-item-action">
+                    <label class="checkbox">
+                        <input type="checkbox" class="form-check-input" [(ngModel)]="task.completed"
+                            (change)="markCompleted(task)">
+                        <span><a routerLink="/todos/{{task.id}}"><b>{{task.title}}</b></a></span>
+                        <span style="margin-left: 20px;"
+                            [ngStyle]="{'color': task.createdOn >= (today) ? 'red' : 'black'}">
+                            Due On: {{task.createdOn | date: 'fullDate'}}</span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

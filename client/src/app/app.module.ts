@@ -14,6 +14,8 @@ import { TaskDetailComponent } from './task-detail/task-detail.component';
 import { TaskSearchComponent } from './task-search/task-search.component';
 // import { TaskComponent } from './dev/task/task.component';
 
+import { KanbanModule } from './kanban/kanban.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +32,7 @@ import { TaskSearchComponent } from './task-search/task-search.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    KanbanModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
