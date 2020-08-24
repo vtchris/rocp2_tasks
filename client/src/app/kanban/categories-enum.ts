@@ -1,5 +1,5 @@
 export enum categories {
-    ToDo = 'ToDo',
-    InProgress = 'InProgress',
-    Done = 'Done'
+  ToDo = "ToDo",
+  InProgress = "InProgress",
+  Done = "Done"
   }

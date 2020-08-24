@@ -11,9 +11,10 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent},
   { path: 'todos', component: TaskListComponent},
   { path: 'todos/:id', component: TaskDetailComponent},
+  { path: 'todos/add', component: TaskDetailComponent},
   { path: 'kanban', component: KanbanBoardComponent},
   { path: 'kanban/:id', component: KanbanDetailComponent},
-  { path: 'todos/add', component: TaskDetailComponent},
+  { path: 'kanban/add', component: KanbanDetailComponent},
 ];
 
 @NgModule({

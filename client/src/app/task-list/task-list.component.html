@@ -14,6 +14,12 @@
                     <option class="option" *ngFor="let filter of filters" [value]="filter" [label]="filter">
                     </option>
                 </select>
+                <label style="margin-left: 20px;"> Sort By: 
+                    <select class="select-option" #sort (change)="sortTasks(sort.value)">
+                        <option class="option" *ngFor="let sortType of sortTypes" [value]="sortType" [label]="sortType">
+                        </option>
+                    </select>
+                </label>
             </label>
             </div>
             <div class="row no-gutters">
@@ -23,9 +29,9 @@
                             <input type="checkbox" class="form-check-input" [(ngModel)]="todo.completed"
                                 (change)="markCompleted(todo)">
                             <span><a routerLink="/todos/{{todo.id}}"><b>{{todo.title}}</b></a></span>
-                            <span style="margin-left: 20px;"
-                                [ngStyle]="{'color': todo.createdOn >= (today) ? 'red' : 'black'}">
-                                Due On: {{todo.createdOn | date: 'fullDate'}}</span>
+                            <span *ngIf="todo.dueDate" style="margin-left: 20px;"
+                                [ngStyle]="{'color': todo.dueDate >= (today) ? 'red' : 'black'}">
+                                Due On: {{todo.dueDate | date: 'fullDate'}}</span>
                             <button class="btn btn-danger" title="delete todo" (click)="delete(todo)">X</button>
                         </label>
                     </li>
