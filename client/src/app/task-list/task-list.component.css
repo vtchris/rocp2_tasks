@@ -8,14 +8,9 @@
 }
 
 .todos li {
-    cursor: pointer;
-    position: relative;
-    /* left: 0; */
-    background-color: #EEE;
-    margin: 1.5em;
-    padding: 2em 0;
-    /* width: 450px; */
-    /* height: 7em; */
+    padding: 3px;
+    margin: 2px;
+    border: 1px solid darkgrey;
     border-radius: 4px;
 }
 
@@ -72,9 +67,11 @@ button.btn {
     position: absolute;
     /* position: ; */
     left: 90%;
-    top: 2px;
+    top: 5px;
     right: 15em;
-    background-color: red !important; 
+    width: 32px;
+    height: 32px;
+    background-color: darkred !important; 
     color: white;
-    
+    font-weight: bolder;    
 }

@@ -1,24 +1,34 @@
-<h2>Tasks To Do</h2>
+<div class="container-fluid">
+    <div class="row no-gutters">
+        <div class="col">
+            <h2>Tasks</h2>
+            <div class="form-inline">
+                <label>Task To Do:
+                    <input #taskTodo />
+                </label>
+                <button (click)="add(taskTodo.value); taskTodo.value=''">add</button>
+            </div>
 
-<div>
-    <label>Task To Do: </label>
-    <input #taskTodo />
-    <button (click)="add(taskTodo.value); taskTodo.value=''">add</button>
-</div>
 
-<ul class="todos">
-    <li *ngFor="let todo of todos">
-        <div> <button class="btn btn-danger" title="delete todo" (click)="delete(todo)">X</button> </div>
-        <a routerLink="/todos/{{todo.id}}">
-            <span> {{todo.title}} </span>
-            <div>Due on {{todo.createdOn}}</div>
-        </a>
-        <!-- <div>Created on {{todo.createdOn}}</div>
-        <div>completed: {{todo.completed}}</div> -->
-    </li>
-</ul>
-<!-- each task has the four following properties:
+
+            <ul class="todos">
+                <li *ngFor="let todo of todos" class="list-group-item list-group-item-action">
+                    <label class="checkbox">
+                        <input type="checkbox" class="form-check-input" [(ngModel)]="todo.completed"
+                            (change)="markCompleted(todo)">
+                        <span><a routerLink="/todos/{{todo.id}}"><b>{{todo.title}}</b></a></span>
+                        <span style="margin-left: 20px;"
+                            [ngStyle]="{'color': todo.createdOn >= (today) ? 'red' : 'black'}">
+                            Due On: {{todo.createdOn | date: 'fullDate'}}</span>
+                        <button class="btn btn-danger" title="delete todo" (click)="delete(todo)">X</button> 
+                    </label>
+                </li>
+            </ul>
+            <!-- each task has the four following properties:
 id: number;
 title: string;
 createdOn: Date;
 completed: boolean;      -->
+        </div>
+    </div>
+</div>

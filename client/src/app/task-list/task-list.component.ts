@@ -10,7 +10,7 @@ import { Todo } from '../models/Todo';
 export class TaskListComponent implements OnInit {
 
   todos: Todo[];
-
+  today: Date = new Date();
 
   constructor(private ts: TaskService) { }
 
@@ -44,5 +44,9 @@ export class TaskListComponent implements OnInit {
 delete (todo: Todo): void {
   this.todos = this.todos.filter(t => t !== todo)
     this.ts.deleteTodo(todo).subscribe();
+}
+
+markCompleted(task: Todo): void {
+  this.ts.updateTodo(task).subscribe();
 }
 }

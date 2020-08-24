@@ -6,6 +6,12 @@ li {
 
 }
 
+li:hover {
+    color: #607D8B;
+    background-color: #DDD;
+    left: .1em;
+}
+
 a:hover {
     text-decoration: none;
 }
