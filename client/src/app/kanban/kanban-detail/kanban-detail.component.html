@@ -1,32 +1,29 @@
 <div class="container-fluid">
-<button (click)="goBack()">go back</button>
-<div *ngIf="task">
-    <div>Task ID: {{task.id}}     Created On: {{task.createdOn}}</div>
-    <form>
-        <div class="form-group">
-        <label>Task:
-            <input class="form-control" type="text" [(ngModel)]="task.title" value="{{task.title}}" />
-        </label>
-        </div>
-        <div class="form-group form-check">
-        <label>
-            <input type="checkbox" class="form-check-input" 
-                [checked]="task.completed"> 
-            Completed
-        </label>
+    <button (click)="goBack()">go back</button>
+    <div>
+        <div>Task ID: {{task.id}} Created On: {{task.createdOn}}</div>
+        <form>
+            <div class="form-group">
+                <label>Task:
+                    <input class="form-control" type="text" [(ngModel)]="task.title" value="{{task.title}}" />
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label>
+                    <input type="checkbox" class="form-check-input" [(ngModel)]="task.completed">
+                    Completed
+                </label>
+            </div>
+            <label>Due Date:
+                <input class="form-control" type="date" [(ngModel)]="task.dueDate" value="{{task.dueDate}}" />
+            </label>
+            <label> Current Status:
+                <select [(ngModel)]="task.category">
+                    <option *ngFor="let category of categoryOptions" [value]="category" [label]="category">
+                    </option>
+                </select>
+            </label>
+        </form>
+        <button (click)="save()">save</button>
     </div>
-        <label>Due Date: 
-            <input class="form-control" type="date" [(ngModel)]="task.dueDate" value="{{task.dueDate}}" />
-        </label>
-        <label> Current Status:
-            <select [(ngModel)]="task.tag">
-                <option *ngFor="let category of categoryOptions" 
-                    [value]="category" 
-                    [label]="category">{{task.tag}}
-                </option>
-            </select>
-        </label>
-    </form>
-    <button (click)="save()">save</button>
-</div>
 </div>

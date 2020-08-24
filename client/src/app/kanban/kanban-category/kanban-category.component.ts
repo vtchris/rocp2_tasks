@@ -4,7 +4,7 @@ import { categories } from '../categories-enum';
 import { Todo } from '../../models/Todo';
 import { TaskService } from '../../services/task.service';
 
-import { KBTASKS } from '../kanban-tasks-demo';
+//import { KBTASKS } from '../kanban-tasks-demo';
 @Component({
   selector: 'app-kanban-category',
   templateUrl: './kanban-category.component.html',
@@ -12,30 +12,28 @@ import { KBTASKS } from '../kanban-tasks-demo';
 })
 export class KanbanCategoryComponent implements OnInit {
 
-  @Input() categoryInput: any;
-  category : categories;
+  @Input() category : categories;
   private categories = categories;
   categoryOptions = [];
-  //tasks: Todo[] = [];
-  tasks: Todo[] = KBTASKS;
+  tasks: Todo[] = [];
+  //tasks: Todo[] = KBTASKS;
 
   constructor(private taskService: TaskService) { }
 
   ngOnInit(): void {
     this.getKanbanTasks();
-    this.category = this.getCategory(this.categoryInput);
+    this.category = this.getCategory(this.category);
 
-    this.categoryOptions = Object.keys(this.categories).map(key => categories[key]);
-    this.categoryOptions.forEach(v => console.log("Category Init: " + v));
-    console.log("Category Init Done");
+    this.categoryOptions = Object.keys(this.categories);
+    //this.categoryOptions.forEach(v => console.log("Category Init: " + v));
+    //console.log("Category Init Done");
   }
 
   getKanbanTasks(): void{
-    //this.taskService.getTodos()
-      //.subscribe(tasks => 
+    this.taskService.getTodos()
+      .subscribe(tasks => 
         this.tasks = this.tasks
-          .filter(task => task.tag === this.categoryInput); 
-          //TODO: update with actual API property
+          .filter(task => task.category === this.category)); 
           
   }
 
