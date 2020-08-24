@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'todos/:id', component: TaskDetailComponent},
   { path: 'kanban', component: KanbanBoardComponent},
   { path: 'kanban/:id', component: KanbanDetailComponent},
+  { path: 'todos/add', component: TaskDetailComponent},
 ];
 
 @NgModule({
