@@ -3,9 +3,9 @@
 <ul class="list-group">
     <li *ngFor="let task of tasks"
         class="kanban-card">
-        <a routherLink="kanban/{{task.id}}">{{task.title}}</a>
+        <a routerLink="kanban/{{task.id}}">{{task.title}}</a>
         <select [(ngModel)]="task.category" style="display: inline-block">
-            <option *ngFor="let category of categoryOptions" [value]="key" [lable]="categories[key]"></option>
+            <option *ngFor="let category of categoryOptions" [value]="key" [label]="categories[key]"></option>
         </select>
     </li>
 </ul>
