@@ -1,0 +1,11 @@
+li {
+    padding: 3px;
+    margin: 2px;
+    border: 1px solid darkgrey;
+    border-radius: 4px;
+
+}
+
+a:hover {
+    text-decoration: none;
+}
