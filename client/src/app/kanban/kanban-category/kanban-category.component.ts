@@ -12,7 +12,8 @@ import { KBTASKS } from '../kanban-tasks-demo';
 })
 export class KanbanCategoryComponent implements OnInit {
 
-  @Input() category: categories;
+  @Input() categoryInput: any;
+  category : categories;
   private categories = categories;
   categoryOptions = [];
   //tasks: Todo[] = [];
@@ -22,16 +23,35 @@ export class KanbanCategoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.getKanbanTasks();
-    this.categoryOptions = Object.keys(this.categories);
+    this.category = this.getCategory(this.categoryInput);
+
+    this.categoryOptions = Object.keys(this.categories).map(key => categories[key]);
+    this.categoryOptions.forEach(v => console.log("Category Init: " + v));
+    console.log("Category Init Done");
   }
 
   getKanbanTasks(): void{
     //this.taskService.getTodos()
       //.subscribe(tasks => 
         this.tasks = this.tasks
-          .filter(task => task.tag === this.category); 
+          .filter(task => task.tag === this.categoryInput); 
           //TODO: update with actual API property
           
+  }
+
+  getCategory(value : string): categories {
+    let cat: categories;
+    for (let key in categories) {
+      if (value === categories[key]) {
+        console.log(`"${value}" (type: ${typeof(value)}) is "${key}" (type: ${typeof(key)})`);
+        cat = categories[key];
+        break;
+      } else {
+        console.log(`"${value}" (type: ${typeof(value)}) is not "${key}" (type: ${typeof(key)})`);
+      }
+    }
+    console.log(`getCategory is returning ${cat}`)
+    return cat;
   }
 
 }

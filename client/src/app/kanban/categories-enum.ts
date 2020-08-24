@@ -1,5 +1,5 @@
 export enum categories {
-    ToDo = 'ToDo',
-    InProgress = 'InProgress',
-    Done = 'Done'
+  kanban_ToDo = "To Do",
+  kanban_InProgress = "In Progress",
+  kanban_Done = "Done"
   }

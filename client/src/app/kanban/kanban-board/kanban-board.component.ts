@@ -14,7 +14,10 @@ export class KanbanBoardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.categoryOptions = Object.keys(this.categories);
+    this.categoryOptions = Object.keys(this.categories).map(key => categories[key]);
+    //for (let value in categories) {this.categoryOptions.push[value];}
+    this.categoryOptions.forEach(v => console.log("Board Init: " + v));
+    console.log("Board Init Done");
   }
 
 }
