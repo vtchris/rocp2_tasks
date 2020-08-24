@@ -40,7 +40,6 @@ export class TaskListComponent implements OnInit {
 
 }
 
-
 delete (todo: Todo): void {
   this.todos = this.todos.filter(t => t !== todo)
     this.ts.deleteTodo(todo).subscribe();
