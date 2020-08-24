@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TaskService } from '../services/task.service';
 import { Todo } from '../models/Todo';
 
@@ -11,6 +11,9 @@ export class TaskListComponent implements OnInit {
 
   todos: Todo[];
   today: Date = new Date();
+
+  @Input() filter: string;
+  filters: string[] = ["Select Filter", "Completed", "Incomplete"];
 
   constructor(private ts: TaskService) { }
 
@@ -38,15 +41,31 @@ export class TaskListComponent implements OnInit {
         this.getTodos()
       });
 
-}
+  }
 
 
-delete (todo: Todo): void {
-  this.todos = this.todos.filter(t => t !== todo)
+  delete(todo: Todo): void {
+    this.todos = this.todos.filter(t => t !== todo)
     this.ts.deleteTodo(todo).subscribe();
-}
+  }
 
-markCompleted(task: Todo): void {
-  this.ts.updateTodo(task).subscribe();
-}
+  markCompleted(task: Todo): void {
+    this.ts.updateTodo(task).subscribe();
+  }
+
+  filterTasks(filter: string): void {
+    switch (filter) {
+      case "Completed":
+        this.ts.getTodos().subscribe(todos =>
+          this.todos = todos.filter(todo => todo.completed));
+          break;
+      case "Incomplete":
+        this.ts.getTodos().subscribe(todos =>
+          this.todos = todos.filter(todo => !todo.completed));
+          break;
+        default:
+          this.getTodos();
+    }
+
+  }
 }
