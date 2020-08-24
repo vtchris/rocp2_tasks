@@ -3,7 +3,7 @@
 <ul class="list-group">
     <li *ngFor="let task of tasks"
         class="kanban-card">
-        <span><a routerLink="/todos/{{task.id}}"><b>{{ task.title }}</b></a></span><br />
+        <span><a routerLink="/kanban/{{task.id}}"><b>{{ task.title }}</b></a></span><br />
         {{ task.tag }} {{ category }}
         <br />
         <select [(ngModel)]="task.tag">
