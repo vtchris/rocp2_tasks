@@ -54,4 +54,8 @@ export class TaskDetailComponent implements OnInit {
 
   }
 
+  markCompleted(task: Todo): void {
+    this.ts.updateTodo(task).subscribe();
+  }
+
 }
