@@ -4,6 +4,8 @@ export class Todo {
   title: string;
   createdOn: Date;
   completed: boolean;
+  user?: string;
+  category?: string;
   dueDate?: Date;
-  tag?: string;
+  priority?: boolean;
 }
