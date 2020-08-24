@@ -14,6 +14,12 @@
                     <option class="option" *ngFor="let filter of filters" [value]="filter" [label]="filter">
                     </option>
                 </select>
+                <label style="margin-left: 20px;"> Sort By: 
+                    <select class="select-option" #sort (change)="sortTasks(sort.value)">
+                        <option class="option" *ngFor="let sortType of sortTypes" [value]="sortType" [label]="sortType">
+                        </option>
+                    </select>
+                </label>
             </label>
             </div>
             <div class="row no-gutters">

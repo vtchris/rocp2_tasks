@@ -15,6 +15,9 @@ export class TaskListComponent implements OnInit {
   @Input() filter: string;
   filters: string[] = ["Select Filter", "Completed", "Incomplete"];
 
+  @Input() sortType: string;
+  sortTypes: string[] = ["Select Sort Type", "Oldest First", "Newest First"]
+
   constructor(private ts: TaskService) { }
 
   ngOnInit(): void {
@@ -66,5 +69,20 @@ export class TaskListComponent implements OnInit {
           this.getTodos();
     }
 
+  }
+
+  sortTasks(sort: string): void {
+    switch(sort) {
+      case "Oldest First":
+        this.ts.getTodos().subscribe(todos =>
+          this.todos = todos.sort((a, b) => (a.createdOn > b.createdOn) ? 1 : -1));
+          break;
+      case "Newest First":
+        this.ts.getTodos().subscribe(todos =>
+          this.todos = todos.sort((a, b) => (a.createdOn < b.createdOn) ? 1 : -1));
+          break;
+      default:
+        this.getTodos();
+    }
   }
 }
