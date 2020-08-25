@@ -11,6 +11,7 @@
                     <label class="checkbox">
                         <input type="checkbox" class="form-check-input" [(ngModel)]="task.completed"
                             (change)="markCompleted(task)">
+                        <button class="btn btn-priority btn-sm" *ngIf="task.priority">!</button>
                         <span><a routerLink="/todos/{{task.id}}"><b>{{task.title}}</b></a></span>
                         <span style="margin-left: 20px;"
                             [ngStyle]="{'color': (task.dueDate | date) >= (today | date) ? 'black' : 'red'}">
