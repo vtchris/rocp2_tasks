@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <h2>Kanban Board</h2>
-    <button routerLink="/kanban/add">Add Card</button>
+    <button routerLink="/newkanban">Add Card</button>
     <div class="row no-gutters">
         <div *ngFor="let category of categoryOptions" class="col-lg">
             <app-kanban-category category={{category}}></app-kanban-category>
