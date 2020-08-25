@@ -1,8 +1,7 @@
-import { Component, OnInit, NgModule } from '@angular/core';
-
-
-import { Todo } from '../models/Todo';
+import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../services/task.service';
+import { Title } from '@angular/platform-browser';
+import { Todo } from '../models/Todo';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,22 +10,29 @@ import { TaskService } from '../services/task.service';
 })
 export class DashboardComponent implements OnInit {
   upcomingTasks: Todo[] = [];
+  today: Date = new Date();
 
-  constructor(private taskService: TaskService) { }
+  constructor(private taskService: TaskService, private titleService: Title) { }
 
   ngOnInit(): void {
-    this.getUpcomingTasks();
+    this.setTitle('Taskadoodle');
+    this.getUpcomingTasks();    
   }
 
   getUpcomingTasks(): void {
     this.taskService.getTodos()
-    .subscribe(upcomingTasks => 
-      this.upcomingTasks = 
-      upcomingTasks
-        .filter(task => !task.completed)  //Finds only incomplete tasks
-        .sort((a, b) => (a.createdOn > b.createdOn) ? 1 : -1) //sorts list by creation date (oldest first). 
-        //TODO: sort by due date instead
-        .slice(0,5));   //Takes top 5 tasks from filtered list
+      .subscribe(upcomingTasks =>
+        this.upcomingTasks =
+        upcomingTasks
+          .filter(task => !task.completed)  //Finds only incomplete tasks
+          .filter(task=> task.dueDate) //Finds tasks that have a due date
+          .sort((a, b) => (a.dueDate > b.dueDate) ? 1 : -1) //sorts list by creation date (oldest first). 
+          //TODO: sort by due date instead
+          .slice(0, 5));   //Takes top 5 tasks from filtered list
+  }
+
+  setTitle( newTitle: string): void {
+    this.titleService.setTitle( newTitle );
   }
 
   markCompleted(task: Todo): void {

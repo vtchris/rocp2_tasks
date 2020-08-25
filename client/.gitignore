@@ -10,7 +10,7 @@ src/app/dev
 
 # dependencies
 /node_modules
-package-lock.json
+#package-lock.json
 
 # profiling files
 chrome-profiler-events*.json

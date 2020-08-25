@@ -11,7 +11,12 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { NavbarLinkComponent } from './navbar/navbar-link/navbar-link.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TaskDetailComponent } from './task-detail/task-detail.component';
+import { TaskSearchComponent } from './task-search/task-search.component';
 // import { TaskComponent } from './dev/task/task.component';
+
+import { KanbanModule } from './kanban/kanban.module';
+import { NewTaskComponent } from './new-task/new-task.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +25,10 @@ import { TaskDetailComponent } from './task-detail/task-detail.component';
     NavbarComponent,
     NavbarLinkComponent,
     DashboardComponent,
-    TaskDetailComponent, 
+    TaskDetailComponent,
+    TaskSearchComponent,
+    NewTaskComponent, 
+    HeaderComponent, 
   ],
   imports: [
     BrowserModule,
@@ -28,6 +36,7 @@ import { TaskDetailComponent } from './task-detail/task-detail.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    KanbanModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

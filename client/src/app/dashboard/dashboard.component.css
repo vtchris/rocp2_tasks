@@ -1,0 +1,17 @@
+li {
+    padding: 3px;
+    margin: 2px;
+    border: 1px solid darkgrey;
+    border-radius: 4px;
+
+}
+
+li:hover {
+    color: #607D8B;
+    background-color: #DDD;
+    left: .1em;
+}
+
+a:hover {
+    text-decoration: none;
+}
