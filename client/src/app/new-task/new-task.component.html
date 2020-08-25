@@ -17,15 +17,14 @@
     </label> -->
     <div class="form-group form-check">
         <label>
-            <div><input #taskTodo.completed type="checkbox" class="form-check-input">
+            <div><input #completed type="checkbox" class="form-check-input">
                 Completed</div>
-            <div><input #taskTodo.priority type="checkbox" class="form-check-input">
+            <div><input #priority type="checkbox" class="form-check-input">
             Priority</div>
         </label>
 
     </div>
-    <!-- <button (click)="add(taskTodo.value); taskTodo.value=''">Add</button> -->
-    <button (click)="add(taskTodo.value, category.value, dueDate.value, taskTodo.completed, taskTodo.priority); taskTodo.value=''; category.value='';dueDate.value='';">Add</button>
-    <!-- completed='false'; priority.value='false' -->
+    <button (click)="add(taskTodo.value, category.value, dueDate.value, completed.checked, priority.checked); taskTodo.value=''; category.value='';dueDate.value='';">Add</button>
+
 </div>
 <!-- task: string, category: string, dueDate: Date, priority: boolean, completed: boolean -->
