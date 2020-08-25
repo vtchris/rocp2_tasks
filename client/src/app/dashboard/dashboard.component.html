@@ -13,7 +13,7 @@
                             (change)="markCompleted(task)">
                         <span><a routerLink="/todos/{{task.id}}"><b>{{task.title}}</b></a></span>
                         <span style="margin-left: 20px;"
-                            [ngStyle]="{'color': task.dueDate >= (today) ? 'red' : 'black'}">
+                            [ngStyle]="{'color': (task.dueDate | date) >= (today | date) ? 'black' : 'red'}">
                             Due On: {{task.dueDate | date: 'fullDate'}}</span>
                     </label>
                 </li>
