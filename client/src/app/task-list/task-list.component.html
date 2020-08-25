@@ -33,10 +33,14 @@
                             <label class="checkbox">
                                 <input type="checkbox" class="form-check-input" [(ngModel)]="todo.completed"
                                     (change)="markCompleted(todo)">
+                                <button class="btn btn-priority" *ngIf="todo.priority">!</button>
                                 <span><a routerLink="/todos/{{todo.id}}"><b>{{todo.title}}</b></a></span>
-                                <span *ngIf="todo.dueDate" style="margin-left: 20px;"
-                                    [ngStyle]="{'color': todo.dueDate >= (today) ? 'red' : 'black'}">
+                                <span> Created On: {{todo.createdOn}}</span>
+                                <span *ngIf="todo.dueDate" 
+                                    [ngStyle]="{'color': (todo.dueDate | date) >= (today | date) ? 'black' : 'red'}">
                                     Due On: {{todo.dueDate | date: 'fullDate'}}</span>
+                                <span *ngIf="todo.category">
+                                     Category: {{todo.category}} </span>
                                 <button class="btn btn-danger" title="delete todo" (click)="delete(todo)">X</button>
                             </label>
                         </li>

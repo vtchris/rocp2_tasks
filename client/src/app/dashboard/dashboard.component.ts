@@ -10,13 +10,14 @@ import { Todo } from '../models/Todo';
 })
 export class DashboardComponent implements OnInit {
   upcomingTasks: Todo[] = [];
-  today: Date = new Date();
+  today: Date;
 
   constructor(private taskService: TaskService, private titleService: Title) { }
 
   ngOnInit(): void {
     this.setTitle('Taskadoodle');
-    this.getUpcomingTasks();    
+    this.getUpcomingTasks();
+    this.today = new Date();    
   }
 
   getUpcomingTasks(): void {

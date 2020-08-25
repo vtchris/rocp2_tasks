@@ -10,18 +10,22 @@ import { Todo } from '../models/Todo';
 export class TaskListComponent implements OnInit {
 
   todos: Todo[];
-  today: Date = new Date();
+  today: Date;
 
   @Input() filter: string;
-  filters: string[] = ["Select Filter", "Completed", "Incomplete"];
+  filters: string[] = ["Select Filter",
+    "Incomplete", "Completed",
+    "Priority", "Not Priority",
+    "Overdue", "Non-Kanban"];
 
   @Input() sortType: string;
-  sortTypes: string[] = ["Select Sort Type", "Oldest First", "Newest First"]
+  sortTypes: string[] = ["Select Sort Type", "Oldest First", "Newest First", "Due Date"]
 
   constructor(private ts: TaskService) { }
 
   ngOnInit(): void {
     this.getTodos();
+    this.today = new Date();
   }
 
   getTodos(): void {
@@ -60,27 +64,45 @@ export class TaskListComponent implements OnInit {
       case "Completed":
         this.ts.getTodos().subscribe(todos =>
           this.todos = todos.filter(todo => todo.completed));
-          break;
+        break;
       case "Incomplete":
         this.ts.getTodos().subscribe(todos =>
           this.todos = todos.filter(todo => !todo.completed));
-          break;
-        default:
-          this.getTodos();
+        break;
+      case "Priority":
+        this.ts.getTodos().subscribe(todos =>
+          this.todos = todos.filter(todo => todo.priority));
+        break;
+      case "Not Priority":
+        this.ts.getTodos().subscribe(todos =>
+          this.todos = todos.filter(todo => !todo.priority));
+        break;
+      case "Overdue":
+        this.ts.getTodos().subscribe(todos =>
+          this.todos = todos.filter(todo => todo.dueDate)
+            //.filter(todo => todo.dueDate < this.today)
+            .filter(todo => !todo.completed)); //TODO: Fix
+        break;
+      case "Non-Kanban":
+        this.ts.getTodos().subscribe(todos =>
+          this.todos = todos.filter(todo => !this.ts.isKanbanTask(todo)));
+        break;
+      default:
+        this.getTodos();
     }
 
   }
 
   sortTasks(sort: string): void {
-    switch(sort) {
+    switch (sort) {
       case "Oldest First":
         this.ts.getTodos().subscribe(todos =>
           this.todos = todos.sort((a, b) => (a.createdOn < b.createdOn) ? 1 : -1));
-          break;
+        break;
       case "Newest First":
         this.ts.getTodos().subscribe(todos =>
           this.todos = todos.sort((a, b) => (a.createdOn > b.createdOn) ? 1 : -1));
-          break;
+        break;
       default:
         this.getTodos();
     }
