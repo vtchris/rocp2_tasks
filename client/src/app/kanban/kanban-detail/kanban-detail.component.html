@@ -1,24 +1,24 @@
 <div class="container-fluid">
     <button (click)="goBack()">go back</button>
-    <div>
+    <div *ngIf="task">
         <div>Task ID: {{task.id}} Created On: {{task.createdOn}}</div>
         <form>
             <div class="form-group">
                 <label>Task:
-                    <input class="form-control" type="text" [(ngModel)]="task.title" value="{{task.title}}" />
+                    <input #taskTitle class="form-control" type="text" [(ngModel)]="task.title" value="{{task.title}}" />
                 </label>
             </div>
             <div class="form-group form-check">
                 <label>
-                    <input type="checkbox" class="form-check-input" [(ngModel)]="task.completed">
+                    <input #taskComplete type="checkbox" class="form-check-input" [(ngModel)]="task.completed">
                     Completed
                 </label>
             </div>
             <label>Due Date:
-                <input class="form-control" type="date" [(ngModel)]="task.dueDate" value="{{task.dueDate}}" />
+                <input #taskDueDate class="form-control" type="date" [(ngModel)]="task.dueDate" value="{{task.dueDate}}" />
             </label>
             <label> Current Status:
-                <select [(ngModel)]="task.category">
+                <select #taskCategory [(ngModel)]="task.category">
                     <option *ngFor="let category of categoryOptions" [value]="category" [label]="category">
                     </option>
                 </select>
