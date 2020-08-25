@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
-
-import { Todo } from '../models/Todo';
 import { TaskService } from '../services/task.service';
+import { Title } from '@angular/platform-browser';
+import { Todo } from '../models/Todo';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,10 +12,11 @@ export class DashboardComponent implements OnInit {
   upcomingTasks: Todo[] = [];
   today: Date = new Date();
 
-  constructor(private taskService: TaskService) { }
+  constructor(private taskService: TaskService, private titleService: Title) { }
 
   ngOnInit(): void {
-    this.getUpcomingTasks();
+    this.setTitle('Taskadoodle');
+    this.getUpcomingTasks();    
   }
 
   getUpcomingTasks(): void {
@@ -29,6 +29,10 @@ export class DashboardComponent implements OnInit {
           .sort((a, b) => (a.dueDate > b.dueDate) ? 1 : -1) //sorts list by creation date (oldest first). 
           //TODO: sort by due date instead
           .slice(0, 5));   //Takes top 5 tasks from filtered list
+  }
+
+  setTitle( newTitle: string): void {
+    this.titleService.setTitle( newTitle );
   }
 
   markCompleted(task: Todo): void {
