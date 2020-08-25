@@ -2,6 +2,9 @@
     <div class="row no-gutters">
         <div class="col">
             <h2>Tasks</h2>
+            <div class="row no-gutters" style="margin-top: 5px;">
+                <app-task-search></app-task-search>
+            </div>
             <div class="form-inline">
                 <label>New Task:
                     <input #taskTodo />
@@ -9,12 +12,19 @@
                 <button (click)="add(taskTodo.value); taskTodo.value=''">Add</button>
             </div>
             <div class="row no-gutters" style="margin-top: 5px;">
-                <label>Filter By: 
-                <select class="select-option" #filter (change)="filterTasks(filter.value)">
-                    <option class="option" *ngFor="let filter of filters" [value]="filter" [label]="filter">
-                    </option>
-                </select>
-            </label>
+                <label>Filter By:
+                    <select class="select-option" #filter (change)="filterTasks(filter.value)">
+                        <option class="option" *ngFor="let filter of filters" [value]="filter" [label]="filter">
+                        </option>
+                    </select>
+                    <label style="margin-left: 20px;"> Sort By:
+                        <select class="select-option" #sort (change)="sortTasks(sort.value)">
+                            <option class="option" *ngFor="let sortType of sortTypes" [value]="sortType"
+                                [label]="sortType">
+                            </option>
+                        </select>
+                    </label>
+                </label>
             </div>
             <div class="row no-gutters">
                 <ul class="todos">
@@ -23,18 +33,13 @@
                             <input type="checkbox" class="form-check-input" [(ngModel)]="todo.completed"
                                 (change)="markCompleted(todo)">
                             <span><a routerLink="/todos/{{todo.id}}"><b>{{todo.title}}</b></a></span>
-                            <span style="margin-left: 20px;"
-                                [ngStyle]="{'color': todo.createdOn >= (today) ? 'red' : 'black'}">
-                                Due On: {{todo.createdOn | date: 'fullDate'}}</span>
+                            <span *ngIf="todo.dueDate" style="margin-left: 20px;"
+                                [ngStyle]="{'color': todo.dueDate >= (today) ? 'red' : 'black'}">
+                                Due On: {{todo.dueDate | date: 'fullDate'}}</span>
                             <button class="btn btn-danger" title="delete todo" (click)="delete(todo)">X</button>
                         </label>
                     </li>
                 </ul>
-                <!-- each task has the four following properties:
-id: number;
-title: string;
-createdOn: Date;
-completed: boolean;      -->
             </div>
         </div>
     </div>

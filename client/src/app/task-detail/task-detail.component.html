@@ -1,18 +1,24 @@
 <!-- <p>task-detail works!</p> -->
 <div *ngIf="todo">
     <h2>{{todo.title | uppercase}} Details</h2>
-    <div><span>id: </span>{{todo.id}}</div>
     <div>
-        <label>Task:
+        <span>Task:
             <input [(ngModel)]="todo.title" placeholder="title" />
-        </label>
+        </span>
     </div>
-    <div><span>completed: </span>{{todo.completed}}</div>
-    <div><span>Due On: </span>{{todo.createdOn}}</div>
-    <!-- on click want to call goBack() function -->
-    <button (click)="goBack()">go back</button>
-    <!-- on click want to call save() function -->
-    <button (click)="save()">save</button>
-    <!-- on click want to call delete() function -->
-    <button class="btn btn-danger" title="delete todo" (click)="delete(todo)">X</button>
+    <div class="form-group form-check">
+        <label>
+            <input type="checkbox" class="form-check-input" [(ngModel)]="todo.completed">
+            Completed
+            <div><span>Due On: </span>{{todo.createdOn}}</div>
+            <button (click)="goBack()">go back</button>
+            <!-- on click want to call save() function -->
+            <button (click)="save()">save</button>
+            <!-- on click want to call delete() function -->
+            <button class="btn btn-danger" title="delete todo" (click)="delete(todo)">X</button>
+        </label>
+
+    </div>
 </div>
+
+<!-- Due On: {{todo.createdOn | date: 'fullDate'}}</span> -->
