@@ -1,1 +1,38 @@
 <p>new-task works!</p>
+<div class="form-inline">
+    <label>New Task:
+        <input #taskTodo />
+    </label>
+    <label>Category:
+        <input #category />
+    </label>
+    <label>Due On:
+        <input #dueDate />
+        <!-- type="date" -->
+    </label>
+    <label>Completed:
+        <input #completed />
+    </label>
+    <label>Priority:
+        <input #priority />
+    </label>
+    <!-- <div class="form-group form-check">
+        <label>
+            <div><input #completed type="checkbox" class="form-check-input" [(ngModel)]="todo.completed">
+                Completed</div>
+            <div><input #priority type="checkbox" class="form-check-input" [(ngModel)]="todo.priority">
+            Priority</div> -->
+
+
+            <!-- <button (click)="goBack()">go back</button> -->
+            <!-- on click want to call save() function -->
+            <!-- <button (click)="save()">save</button> -->
+            <!-- on click want to call delete() function -->
+            <!-- <button class="btn btn-danger" title="delete todo" (click)="delete(todo)">X</button> -->
+        <!-- </label>
+
+    </div> -->
+    <!-- <button (click)="add(taskTodo.value); taskTodo.value=''">Add</button> -->
+    <button (click)="add(taskTodo.value, category.value, dueDate.value, completed.value, priority.value); taskTodo.value=''; category.value='';dueDate.value=''; completed.value='false'; priority.value='false'">Add</button>
+</div>
+<!-- task: string, category: string, dueDate: Date, priority: boolean, completed: boolean -->
