@@ -11,6 +11,7 @@ export class TaskListComponent implements OnInit {
 
   todos: Todo[];
   today: Date;
+  verbose: boolean = true; //turns on additional fields in tasklist for filter/sort/debugging
 
   @Input() filter: string;
   filters: string[] = ["Select Filter",
@@ -80,8 +81,10 @@ export class TaskListComponent implements OnInit {
       case "Overdue":
         this.ts.getTodos().subscribe(todos =>
           this.todos = todos.filter(todo => todo.dueDate)
-            //.filter(todo => todo.dueDate < this.today)
-            .filter(todo => !todo.completed)); //TODO: Fix
+          //I don't know why I need to put these two dates into NEW dates, 
+          //but it doesn't work otherwise, so... WHATEVER!
+            .filter(todo => new Date(todo.dueDate) < new Date(this.today))
+            .filter(todo => !todo.completed)); 
         break;
       case "Non-Kanban":
         this.ts.getTodos().subscribe(todos =>
@@ -96,13 +99,17 @@ export class TaskListComponent implements OnInit {
   sortTasks(sort: string): void {
     switch (sort) {
       case "Oldest First":
-        this.ts.getTodos().subscribe(todos =>
-          this.todos = todos.sort((a, b) => (a.createdOn < b.createdOn) ? 1 : -1));
+        this.todos = this.todos.sort((a, b) => 
+            (new Date(a.createdOn) < new Date(b.createdOn)) ? 1 : -1);
         break;
       case "Newest First":
-        this.ts.getTodos().subscribe(todos =>
-          this.todos = todos.sort((a, b) => (a.createdOn > b.createdOn) ? 1 : -1));
+        this.todos = this.todos.sort((a, b) => 
+            (new Date(a.createdOn) > new Date(b.createdOn)) ? 1 : -1);
         break;
+        case "Due Date":
+          this.todos = this.todos
+            .sort((a, b) => (new Date(a.dueDate) > new Date(b.dueDate)) ? 1 : -1);
+          break;
       default:
         this.getTodos();
     }

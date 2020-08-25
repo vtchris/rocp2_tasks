@@ -35,12 +35,19 @@
                                     (change)="markCompleted(todo)">
                                 <button class="btn btn-priority" *ngIf="todo.priority">!</button>
                                 <span><a routerLink="/todos/{{todo.id}}"><b>{{todo.title}}</b></a></span>
-                                <span> Created On: {{todo.createdOn}}</span>
-                                <span *ngIf="todo.dueDate" 
+                                <span *ngIf="todo.dueDate"
                                     [ngStyle]="{'color': (todo.dueDate | date) >= (today | date) ? 'black' : 'red'}">
                                     Due On: {{todo.dueDate | date: 'fullDate'}}</span>
-                                <span *ngIf="todo.category">
-                                     Category: {{todo.category}} </span>
+                                <div *ngIf="verbose" style="color: lightgray">Additional Details (Verbose On):
+                                    <span *ngIf="todo.category">
+                                        ID: {{todo.id}} </span>
+                                    <span> Created On:
+                                        {{todo.createdOn | date: 'full'}}</span>
+                                    <span *ngIf="todo.category">
+                                        Category: {{todo.category}} </span>
+                                    <span *ngIf="todo.user">
+                                        User: {{todo.user}} </span>
+                                </div>
                                 <button class="btn btn-danger" title="delete todo" (click)="delete(todo)">X</button>
                             </label>
                         </li>
