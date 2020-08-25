@@ -13,6 +13,8 @@ export class NewTaskComponent implements OnInit {
 
   todo : Todo;
   todos : Todo[];
+  // completed : boolean = false;
+  // priority : boolean = false; 
 
   constructor(
     private ts: TaskService,
@@ -23,16 +25,8 @@ export class NewTaskComponent implements OnInit {
 
   }
 
-  add(task: string, category: string, dueDate: Date, priority: boolean, completed: boolean): void {
-    // [x: string]: any;
-    // id: number;
-    // title: string;
-    // createdOn: Date;
-    // completed: boolean;
-    // user?: string;
-    // category?: string;
-    // dueDate?: Date;
-    // priority?: boolean;
+  add(task: string, category: string, dueDate: Date, completed: boolean, priority: boolean): void {
+    
     task = task.trim();
     category = category.trim();
     if (!task) { return; }
