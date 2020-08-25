@@ -6,11 +6,24 @@
             <input [(ngModel)]="todo.title" placeholder="title" />
         </span>
     </div>
+    <div>
+        <span>Category:
+            <input [(ngModel)]="todo.category" placeholder="category" />
+        </span>
+    </div>
+    <div>
+        <span>Due On:
+            <input [(ngModel)]="todo.dueDate" placeholder="dueDate" />
+        </span>
+    </div>
     <div class="form-group form-check">
         <label>
-            <input type="checkbox" class="form-check-input" [(ngModel)]="todo.completed">
-            Completed
-            <div><span>Due On: </span>{{todo.createdOn}}</div>
+            <div><input type="checkbox" class="form-check-input" [(ngModel)]="todo.completed">
+                Completed</div>
+            <div><input type="checkbox" class="form-check-input" [(ngModel)]="todo.priority">
+            Priority</div>
+
+
             <button (click)="goBack()">go back</button>
             <!-- on click want to call save() function -->
             <button (click)="save()">save</button>
@@ -19,6 +32,17 @@
         </label>
 
     </div>
-</div>
 
-<!-- Due On: {{todo.createdOn | date: 'fullDate'}}</span> -->
+    <!-- Tasks have these properties:
+    [x: string]: any;
+    id: number;
+    title: string;
+    createdOn: Date;
+    completed: boolean;
+    user?: string;
+    category?: string;
+    dueDate?: Date;
+    priority?: boolean; -->
+
+
+</div>
