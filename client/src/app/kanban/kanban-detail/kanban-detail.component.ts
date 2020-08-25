@@ -5,7 +5,7 @@ import { Location } from '@angular/common'
 import { Todo } from '../../models/Todo';
 import { TaskService } from '../../services/task.service';
 
-import { categories } from '../categories-enum';
+// import { categories } from '../categories-enum';
 
 @Component({
   selector: 'app-kanban-detail',
