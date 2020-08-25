@@ -5,7 +5,7 @@ import { Location } from '@angular/common'
 import { Todo } from '../../models/Todo';
 import { TaskService } from '../../services/task.service';
 
-import { categories } from '../categories-enum';
+// import { categories } from '../categories-enum';
 
 @Component({
   selector: 'app-kanban-detail',
@@ -15,8 +15,8 @@ import { categories } from '../categories-enum';
 export class KanbanDetailComponent implements OnInit {
 
   task: Todo;
-  private categories = categories;
-  categoryOptions = [];
+  //private categories = categories;
+  categoryOptions = ["ToDo", "InProgress", "Done"];
 
   constructor(
       private route: ActivatedRoute,
@@ -25,7 +25,7 @@ export class KanbanDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.categoryOptions = Object.keys(this.categories);
+    //this.categoryOptions = Object.keys(this.categories);
     this.getTodo()
   }
 
