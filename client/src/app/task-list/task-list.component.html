@@ -27,19 +27,21 @@
                 </label>
             </div>
             <div class="row no-gutters">
-                <ul class="todos">
-                    <li *ngFor="let todo of todos" class="list-group-item list-group-item-action">
-                        <label class="checkbox">
-                            <input type="checkbox" class="form-check-input" [(ngModel)]="todo.completed"
-                                (change)="markCompleted(todo)">
-                            <span><a routerLink="/todos/{{todo.id}}"><b>{{todo.title}}</b></a></span>
-                            <span *ngIf="todo.dueDate" style="margin-left: 20px;"
-                                [ngStyle]="{'color': todo.dueDate >= (today) ? 'red' : 'black'}">
-                                Due On: {{todo.dueDate | date: 'fullDate'}}</span>
-                            <button class="btn btn-danger" title="delete todo" (click)="delete(todo)">X</button>
-                        </label>
-                    </li>
-                </ul>
+                <div class="col">
+                    <ul class="list-group todos">
+                        <li *ngFor="let todo of todos" class="list-group-item list-group-item-action">
+                            <label class="checkbox">
+                                <input type="checkbox" class="form-check-input" [(ngModel)]="todo.completed"
+                                    (change)="markCompleted(todo)">
+                                <span><a routerLink="/todos/{{todo.id}}"><b>{{todo.title}}</b></a></span>
+                                <span *ngIf="todo.dueDate" style="margin-left: 20px;"
+                                    [ngStyle]="{'color': todo.dueDate >= (today) ? 'red' : 'black'}">
+                                    Due On: {{todo.dueDate | date: 'fullDate'}}</span>
+                                <button class="btn btn-danger" title="delete todo" (click)="delete(todo)">X</button>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
