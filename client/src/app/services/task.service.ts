@@ -78,7 +78,8 @@ export class TaskService {
     }
   }
 
-  syncKanbanCompleted(task: Todo): void {
+//Use to change the Category when Completed is changed
+  syncKanbanCompleted(task: Todo): void { 
     if (task.completed) {
       task.category = "Done";
       this.updateTodo(task).subscribe();
@@ -88,7 +89,8 @@ export class TaskService {
     }
   }
 
-  syncKanbanDone(task: Todo): void {
+  //Use to change the Completed flag when Category is changed
+  syncKanbanDone(task: Todo): void { 
     if (task.category === 'Done') {
       task.completed = true;
       this.updateTodo(task).subscribe();
