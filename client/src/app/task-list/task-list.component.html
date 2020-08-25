@@ -9,7 +9,7 @@
                 <label>New Task:
                     <input #taskTodo />
                 </label>
-                <button (click)="add(taskTodo.value); taskTodo.value=''">Add</button>
+                <button class="btn btn-secondary btn-sm" (click)="add(taskTodo.value); taskTodo.value=''">Add</button>
             </div>
             <div class="row no-gutters" style="margin-top: 5px;">
                 <label>Filter By:
@@ -25,6 +25,7 @@
                         </select>
                     </label>
                 </label>
+                <button class="btn btn-secondary btn-sm" (click)="reloadPage()">Reset Filters</button>
             </div>
             <div class="row no-gutters">
                 <div class="col">
@@ -38,7 +39,7 @@
                                 <span *ngIf="todo.dueDate"
                                     [ngStyle]="{'color': (todo.dueDate | date) >= (today | date) ? 'black' : 'red'}">
                                     Due On: {{todo.dueDate | date: 'fullDate'}}</span>
-                                <div *ngIf="verbose" style="color: lightgray">Additional Details (Verbose On):
+                                <div *ngIf="verbose" style="color: lightgray">Additional Details (verbose={{verbose}}):
                                     <span *ngIf="todo.category">
                                         ID: {{todo.id}} </span>
                                     <span> Created On:
