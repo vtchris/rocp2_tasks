@@ -42,7 +42,7 @@ export class KanbanCategoryComponent implements OnInit {
   }
 
   delete(task: Todo): void {
-    this.taskService.deleteTodo(task).subscribe();
+    this.taskService.deleteTodo(task).subscribe(() => location.reload());
   }
 
   getCategory(value : string): categories {

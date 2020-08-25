@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common'
 
 import { Todo } from 'src/app/models/Todo';
 import { TaskService } from '../../services/task.service';
@@ -11,6 +13,8 @@ import { TaskService } from '../../services/task.service';
 export class KanbanNewTaskComponent implements OnInit {
 
   constructor(
+    private route: ActivatedRoute,
+    private location: Location,
     private ts: TaskService
   ) { }
 
@@ -33,4 +37,9 @@ export class KanbanNewTaskComponent implements OnInit {
       this.ts.addTodo(todoJSON).subscribe(() => location.reload());
     }
   }
+
+  goBack(): void {
+    this.location.back();
+  }
+
 }
