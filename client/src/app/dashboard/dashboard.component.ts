@@ -36,6 +36,9 @@ export class DashboardComponent implements OnInit {
   }
 
   markCompleted(task: Todo): void {
+    if (this.taskService.isKanbanTask(task)){
+      this.taskService.syncKanbanCompleted(task);
+    }
     this.taskService.updateTodo(task).subscribe();
   }
 
