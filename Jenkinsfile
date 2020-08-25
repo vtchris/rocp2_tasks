@@ -19,7 +19,7 @@ pipeline {
         sh '''cd client
 npm i 
 npm run build
-cp dist/client/* /deploy'''
+cp -r dist/client/* /deploy'''
       }
     }
 
