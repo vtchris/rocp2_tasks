@@ -5,9 +5,11 @@
             <span><a routerLink="/kanban/{{task.id}}"><b>{{ task.title }}</b></a></span><br />
             {{ task.category }} {{ category }}
             <br />
-            <select [(ngModel)]="task.category">
-                <option *ngFor="let category of categoryOptions" [value]="category" [label]="category">{{task.category}}
-                </option>
+            <select [(ngModel)]="task.category" (change)="updateCategory(task)">
+                <!-- <option *ngFor="let category of categoryOptions" [value]="category" [label]="category">{{task.category}}</option> -->
+                    <option value="ToDo">To Do</option>
+                    <option value="InProgress">In Progress</option>
+                    <option value="Done">Done</option>
             </select>
         </li>
     </ul>
