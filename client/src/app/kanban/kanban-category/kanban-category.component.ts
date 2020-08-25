@@ -12,9 +12,9 @@ import { TaskService } from '../../services/task.service';
 })
 export class KanbanCategoryComponent implements OnInit {
 
-  @Input() category : categories;
-  private categories = categories;
-  categoryOptions = [];
+  @Input() category : string;
+  //private categories = categories;
+  categoryOptions = ["ToDo", "InProgress", "Done"];
   tasks: Todo[] = [];
   //tasks: Todo[] = KBTASKS;
 
@@ -22,9 +22,9 @@ export class KanbanCategoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.getKanbanTasks();
-    this.category = this.getCategory(this.category);
+    //this.category = this.getCategory(this.category);
 
-    this.categoryOptions = Object.keys(this.categories);
+    //this.categoryOptions = Object.keys(this.categories);
     //this.categoryOptions.forEach(v => console.log("Category Init: " + v));
     //console.log("Category Init Done");
   }
@@ -32,9 +32,17 @@ export class KanbanCategoryComponent implements OnInit {
   getKanbanTasks(): void{
     this.taskService.getTodos()
       .subscribe(tasks => 
-        this.tasks = this.tasks
-          .filter(task => task.category === this.category)); 
+        this.tasks = tasks
+          .filter(task => task.category == this.category)); 
           
+  }
+
+  updateCategory(task: Todo): void{
+    this.taskService.updateTodo(task).subscribe(() => location.reload());
+  }
+
+  delete(task: Todo): void {
+    this.taskService.deleteTodo(task).subscribe(() => location.reload());
   }
 
   getCategory(value : string): categories {

@@ -1,10 +1,12 @@
 .col-lg {
-    background-color: lightgray;
+    background-color: rgb(240, 208, 205);
     border-radius: 4px;
     margin: 5px;
     padding: 5px;
 }
 
-.offset-1 {
-    width: 15px;
+button {
+    position: absolute;
+    top: 130px;
+    right: 20px;
 }

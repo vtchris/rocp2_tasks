@@ -8,13 +8,13 @@ import { categories } from '../categories-enum';
 })
 export class KanbanBoardComponent implements OnInit {
 
-  private categories = categories;
-  categoryOptions = [];
+  //private categories = categories;
+  categoryOptions = ["ToDo", "InProgress", "Done"];
 
   constructor() { }
 
   ngOnInit(): void {
-    this.categoryOptions = Object.keys(this.categories);
+    //this.categoryOptions = Object.keys(this.categories);
     //for (let value in categories) {this.categoryOptions.push[value];}
     //this.categoryOptions.forEach(v => console.log("Board Init: " + v));
     //console.log("Board Init Done");
