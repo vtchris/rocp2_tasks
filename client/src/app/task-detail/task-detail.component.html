@@ -22,6 +22,8 @@
                 Completed</div>
             <div><input type="checkbox" class="form-check-input" [(ngModel)]="todo.priority">
             Priority</div>
+
+
             <button (click)="goBack()">go back</button>
             <!-- on click want to call save() function -->
             <button (click)="save()">save</button>
@@ -30,4 +32,17 @@
         </label>
 
     </div>
+
+    <!-- Tasks have these properties:
+    [x: string]: any;
+    id: number;
+    title: string;
+    createdOn: Date;
+    completed: boolean;
+    user?: string;
+    category?: string;
+    dueDate?: Date;
+    priority?: boolean; -->
+
+
 </div>
