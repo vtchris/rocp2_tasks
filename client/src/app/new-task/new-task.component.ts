@@ -49,11 +49,29 @@ export class NewTaskComponent implements OnInit {
 
     this.ts.addTodo(todoJSON)
       .subscribe(todo => {
-        // this.getTodos()
-        this.goBack()
+        this.getTodos();
+        //this.save();
+       this.goBack()
       });
 
   }
+  // add(task: string): void {
+  //   task = task.trim();
+  //   if (!task) { return; }
+  //   let todoJSON: Todo = {
+  //     "id": 0,
+  //     "title": task,
+  //     "createdOn": null,
+  //     "completed": false
+  //   };
+
+  //   this.ts.addTodo(todoJSON)
+  //     .subscribe(todo => {
+  //       this.getTodos()
+  //       this.goBack();
+  //     });
+
+  // }
 
   getTodos(): void {
     this.ts.getTodos()
