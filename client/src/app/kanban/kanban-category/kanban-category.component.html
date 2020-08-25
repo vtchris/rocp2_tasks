@@ -1,16 +1,26 @@
-<div class="category">
-    <h4>{{ category }}</h4>
-    <ul class="list-group">
-        <li *ngFor="let task of tasks" class="kanban-card">
-            <span><a routerLink="/kanban/{{task.id}}"><b>{{ task.title }}</b></a></span><br />
-            {{ task.category }} {{ category }}
-            <br />
-            <select [(ngModel)]="task.category" (change)="updateCategory(task)">
-                <!-- <option *ngFor="let category of categoryOptions" [value]="category" [label]="category">{{task.category}}</option> -->
-                    <option value="ToDo">To Do</option>
-                    <option value="InProgress">In Progress</option>
-                    <option value="Done">Done</option>
-            </select>
-        </li>
-    </ul>
+<div class="container-fluid">
+    <div class="category">
+        <h4>{{ category }}</h4>
+        <div>
+            <ul class="list-group">
+                <li *ngFor="let task of tasks" class="list-group-item list-group-item-action kanban-card">
+                    <span><a routerLink="/kanban/{{task.id}}"><b>{{ task.title }}</b></a></span>
+                    <span><button class="delete" (click)="delete(task)">X</button></span>
+                    <br />
+                    <span *ngIf="task.dueDate">Due: {{ task.dueDate }}</span>
+                    <br />
+                    <label>Update Status:
+                        <select [(ngModel)]="task.category" (change)="updateCategory(task)">
+                            <!-- <option *ngFor="let category of categoryOptions" [value]="category" [label]="category">{{task.category}}</option> -->
+                            <option value="ToDo">To Do</option>
+                            <option value="InProgress">In Progress</option>
+                            <option value="Done">Done</option>
+                        </select>
+                        
+                    </label>
+
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>

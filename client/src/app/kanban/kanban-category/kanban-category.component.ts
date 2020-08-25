@@ -41,6 +41,10 @@ export class KanbanCategoryComponent implements OnInit {
     this.taskService.updateTodo(task).subscribe(() => location.reload());
   }
 
+  delete(task: Todo): void {
+    this.taskService.deleteTodo(task).subscribe();
+  }
+
   getCategory(value : string): categories {
     let cat: categories;
     for (let key in categories) {

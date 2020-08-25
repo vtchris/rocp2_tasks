@@ -30,7 +30,7 @@ export class KanbanNewTaskComponent implements OnInit {
         "category": taskCategory,
         "priority": false
       };
-      this.ts.addTodo(todoJSON).subscribe();
+      this.ts.addTodo(todoJSON).subscribe(() => location.reload());
     }
   }
 }
