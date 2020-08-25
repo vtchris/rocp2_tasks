@@ -9,49 +9,49 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class TaskService {
-  url:string = 'http://3.15.237.3:8080/todos';
+  url: string = 'http://3.15.237.3:8080/todos';
 
   httpHeader = {
     headers: new HttpHeaders({
-      'Content-Type':'application/json',
+      'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*'
     })
   }
 
   constructor(private http: HttpClient) { }
 
-  addTodo(todo: Todo):Observable<any>{
-    return this.http.post<Todo>(this.url,todo,this.httpHeader);
+  addTodo(todo: Todo): Observable<any> {
+    return this.http.post<Todo>(this.url, todo, this.httpHeader);
   }
 
-  deleteTodo(todo: Todo):Observable<any>{
-    return this.http.delete(`${this.url}/${todo.id}`,this.httpHeader);
+  deleteTodo(todo: Todo): Observable<any> {
+    return this.http.delete(`${this.url}/${todo.id}`, this.httpHeader);
   }
 
-  findTodo(id:number):Observable<any>{
+  findTodo(id: number): Observable<any> {
     return this.http.get(`${this.url}/${id}`);
   }
-  
-  getTodos(): Observable<Todo[]>{
+
+  getTodos(): Observable<Todo[]> {
     return this.http.get<Todo[]>(this.url);
   }
 
 
-  updateTodo(todo: Todo): Observable<any> {  
-    return this.http.put(`${this.url}`,todo,this.httpHeader)
-  }  
+  updateTodo(todo: Todo): Observable<any> {
+    return this.http.put(`${this.url}`, todo, this.httpHeader)
+  }
 
   searchTodos(term: string): Observable<Todo[]> {
-    
+
     if (!term.trim()) {
       // if not search term, return empty todo array
-      return of([]);      
+      return of([]);
     }
-    
-    return this.http.get<Todo[]>(`${this.url}`).pipe(         
-      map(x => x.filter(t=> t.title.match(new RegExp(term,'gi')))),
+
+    return this.http.get<Todo[]>(`${this.url}`).pipe(
+      map(x => x.filter(t => t.title.match(new RegExp(term, 'gi')))),
       catchError(this.handleError<Todo[]>('searchTodos', []))
-    );   
+    );
   }
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -66,5 +66,36 @@ export class TaskService {
       return of(result as T);
     };
   } // end handleError method
+
+  //Kanban-related Services
+  isKanbanTask(task: Todo): boolean {
+    if (task.category === 'ToDo' ||
+      task.category === 'InProgress' ||
+      task.category === 'Done') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  syncKanbanCompleted(task: Todo): void {
+    if (task.completed) {
+      task.category = "Done";
+      this.updateTodo(task).subscribe();
+    } else {
+      task.category = "InProgress";
+      this.updateTodo(task).subscribe();
+    }
+  }
+
+  syncKanbanDone(task: Todo): void {
+    if (task.category === 'Done') {
+      task.completed = true;
+      this.updateTodo(task).subscribe();
+    } else {
+      task.completed = false;
+      this.updateTodo(task).subscribe();
+    }
+  }
 
 }
