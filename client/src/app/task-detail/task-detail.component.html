@@ -1,48 +1,44 @@
-<!-- <p>task-detail works!</p> -->
-<div *ngIf="todo">
-    <h2>{{todo.title | uppercase}} Details</h2>
-    <div>
-        <span>Task:
-            <input [(ngModel)]="todo.title" placeholder="title" />
-        </span>
+<div class="container-fluid">
+    <h3>Edit To Do List Task</h3>
+    <button class="btn btn-secondary" (click)="goBack()">&lt; Go Back</button>
+    <div *ngIf="todo">
+        <div>Task ID: {{todo.id}} createdOn: {{todo.createdOn}}</div>
+        <form>
+            <div class="form-group">
+                <label>Task:
+                    <input class="form-control" type="text" [(ngModel)]="todo.title" name="title"
+                        value="{{todo.title}}" />
+                </label>
+            </div>
+            <label>
+                Due Date:
+                <input class="form-control" type="date" [(ngModel)]="todo.dueDate" name="dueDate"
+                    value="{{todo.dueDate}}" />
+            </label>
+            <label>
+                Category:
+                <select class="btn btn-secondary btn-sm dropdown-toggle" [(ngModel)]="todo.category" name="category">
+                    <option value="School">School</option>
+                    <option value="Work">Work</option>
+                    <option value="Chores">Chores</option>
+                    <option value="Family">Family</option>
+                    <option value="DailyTasks">Daily Tasks</option>
+                </select>
+            </label>
+            <div class="form-group form-check">
+                <label>
+                    <div><input type="checkbox" class="form-check-input" 
+                        [(ngModel)]="todo.completed" name="completed">
+                        Completed</div>
+                    <div><input type="checkbox" class="form-check-input" 
+                        [(ngModel)]="todo.priority" name=priority>
+                        Priority</div>
+                </label>
+            </div>
+        </form>
+        <!-- on click want to call save() function -->
+        <button class="btn btn-secondary" (click)="save()">save</button>
+        <!-- on click want to call delete() function -->
+        <button class="btn btn-danger" title="delete todo" (click)="delete(todo)">X</button>
     </div>
-    <div>
-        <span>Category:
-            <input [(ngModel)]="todo.category" placeholder="category" />
-        </span>
-    </div>
-    <div>
-        <span>Due On:
-            <input [(ngModel)]="todo.dueDate" placeholder="dueDate" />
-        </span>
-    </div>
-    <div class="form-group form-check">
-        <label>
-            <div><input type="checkbox" class="form-check-input" [(ngModel)]="todo.completed">
-                Completed</div>
-            <div><input type="checkbox" class="form-check-input" [(ngModel)]="todo.priority">
-            Priority</div>
-
-
-            <button (click)="goBack()">go back</button>
-            <!-- on click want to call save() function -->
-            <button (click)="save()">save</button>
-            <!-- on click want to call delete() function -->
-            <button class="btn btn-danger" title="delete todo" (click)="delete(todo)">X</button>
-        </label>
-
-    </div>
-
-    <!-- Tasks have these properties:
-    [x: string]: any;
-    id: number;
-    title: string;
-    createdOn: Date;
-    completed: boolean;
-    user?: string;
-    category?: string;
-    dueDate?: Date;
-    priority?: boolean; -->
-
-
 </div>
