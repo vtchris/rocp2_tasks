@@ -30,8 +30,8 @@ button.delete {
 
 .btn-priority {
     position: absolute;
-    top: 1px;
-    right: 1px;
+    top: 5px;
+    right: 5px;
     padding: 1px;
     width: 25px;
     height: 25px;
