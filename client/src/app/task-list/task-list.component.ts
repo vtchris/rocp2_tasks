@@ -19,7 +19,9 @@ export class TaskListComponent implements OnInit {
     "Incomplete", "Completed",
     "Priority", "Not Priority",
     "Has Due Date", "Overdue",
-    "Non-Kanban"];
+    "Non-Kanban", "==========",
+    "Categories", "==========",
+    "School", "Work", "Chores", "Family", "Daily Tasks"];
 
   @Input() sortType: string;
   sortTypes: string[] = ["Select Sort Type", "Oldest First", "Newest First", "Due Date"]
@@ -67,42 +69,65 @@ export class TaskListComponent implements OnInit {
   }
 
   filterTasks(filter: string): void {
-    this.currentFilters.push(filter);
-    switch (filter) {
-      case "Completed":
-        this.todos = this.todos
-          .filter(todo => todo.completed);
-        break;
-      case "Incomplete":
-        this.todos = this.todos
-          .filter(todo => !todo.completed);
-        break;
-      case "Priority":
-        this.todos = this.todos
-          .filter(todo => todo.priority);
-        break;
-      case "Not Priority":
-        this.todos = this.todos
-          .filter(todo => !todo.priority);
-        break;
-      case "Has Due Date":
-        this.todos = this.todos
-          .filter(todo => todo.dueDate);
-        break;
-      case "Overdue":
-        this.todos = this.todos
-          .filter(todo => todo.dueDate)
-          //I don't know why I need to put these two dates into NEW dates, 
-          //but it doesn't work otherwise, so... WHATEVER!
-          .filter(todo => new Date(todo.dueDate) < new Date(this.today))
-          .filter(todo => !todo.completed);
-        break;
-      case "Non-Kanban":
-        this.todos = this.todos
-          .filter(todo => !this.ts.isKanbanTask(todo));
-        break;
-      default:
-        this.getTodos();
+    if (!this.currentFilters.includes(filter)) {
+      this.currentFilters.push(filter);
+      switch (filter) {
+        case "Completed":
+          this.todos = this.todos
+            .filter(todo => todo.completed);
+          break;
+        case "Incomplete":
+          this.todos = this.todos
+            .filter(todo => !todo.completed);
+          break;
+        case "Priority":
+          this.todos = this.todos
+            .filter(todo => todo.priority);
+          break;
+        case "Not Priority":
+          this.todos = this.todos
+            .filter(todo => !todo.priority);
+          break;
+        case "Has Due Date":
+          this.todos = this.todos
+            .filter(todo => todo.dueDate);
+          break;
+        case "Overdue":
+          this.todos = this.todos
+            .filter(todo => todo.dueDate)
+            //I don't know why I need to put these two dates into NEW dates, 
+            //but it doesn't work otherwise, so... WHATEVER!
+            .filter(todo => new Date(todo.dueDate) < new Date(this.today))
+            .filter(todo => !todo.completed);
+          break;
+        case "Non-Kanban":
+          this.todos = this.todos
+            .filter(todo => !this.ts.isKanbanTask(todo));
+          break;
+        case "School":
+          this.todos = this.todos
+            .filter(todo => todo.category === "School");
+          break;
+        case "Work":
+          this.todos = this.todos
+            .filter(todo => todo.category === "Work");
+          break;
+        case "Chores":
+          this.todos = this.todos
+            .filter(todo => todo.category === "Chores");
+          break;
+        case "Family":
+          this.todos = this.todos
+            .filter(todo => todo.category === "Family");
+          break;
+        case "Daily Tasks":
+          this.todos = this.todos
+            .filter(todo => todo.category === "DailyTasks");
+          break;
+
+        default:
+          this.currentFilters.pop();
+      }
     }
   }
 
@@ -124,4 +149,9 @@ export class TaskListComponent implements OnInit {
         this.getTodos();
     }
   }
+
+  isKanbanTask(task: Todo): boolean {
+    return this.ts.isKanbanTask(task);
+  }
+
 }
