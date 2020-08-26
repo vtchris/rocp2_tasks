@@ -38,6 +38,7 @@ export class KanbanCategoryComponent implements OnInit {
   }
 
   updateCategory(task: Todo): void{
+    this.taskService.syncKanbanDone(task);
     this.taskService.updateTodo(task).subscribe(() => location.reload());
   }
 

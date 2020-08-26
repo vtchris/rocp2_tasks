@@ -1,10 +1,19 @@
-li {
+.card{
+    min-width: 400px;
+    max-width: 400px;
+    
+    
+}
+
+
+
+/* li {
     padding: 3px;
     margin: 2px;
     border: 1px solid darkgrey;
     border-radius: 4px;
 
-}
+} */
 
 li:hover {
     color: #607D8B;
@@ -28,3 +37,19 @@ a:hover {
     align-content: center;
     justify-content: center;
 }
+
+label {
+    display: block;
+    padding-left: 15px;
+    text-indent: -15px;
+  }
+  input[type=checkbox] {
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    margin: 3px;
+    vertical-align: bottom;
+    position: relative;
+    top: 0;
+    *overflow: hidden;
+  }
