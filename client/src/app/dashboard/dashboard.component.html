@@ -12,7 +12,7 @@
                         <input type="checkbox" class="form-check-input" [(ngModel)]="task.completed"
                             (change)="markCompleted(task)">
                         <button class="btn btn-priority" *ngIf="task.priority">!</button>
-                        <span><a routerLink="/todos/{{task.id}}"><b>{{task.title}}</b></a></span>
+                        <span><a routerLink="/todos/{{task.id}}">&nbsp;<b>{{task.title}}</b></a></span>
                         <span style="margin-left: 20px;"
                             [ngStyle]="{'color': (task.dueDate | date) >= (today | date) ? 'black' : 'red'}">
                             Due On: {{task.dueDate | date: 'fullDate'}}</span>

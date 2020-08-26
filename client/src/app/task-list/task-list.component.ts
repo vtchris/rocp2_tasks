@@ -10,18 +10,24 @@ import { Todo } from '../models/Todo';
 export class TaskListComponent implements OnInit {
 
   todos: Todo[];
-  today: Date = new Date();
+  today: Date;
+  verbose: boolean = false; //turns on additional fields in tasklist for filter/sort/debugging
 
   @Input() filter: string;
-  filters: string[] = ["Select Filter", "Completed", "Incomplete"];
+  filters: string[] = ["Select Filter",
+    "Incomplete", "Completed",
+    "Priority", "Not Priority",
+    "Has Due Date", "Overdue",
+    "Non-Kanban"];
 
   @Input() sortType: string;
-  sortTypes: string[] = ["Select Sort Type", "Oldest First", "Newest First"]
+  sortTypes: string[] = ["Select Sort Type", "Oldest First", "Newest First", "Due Date"]
 
   constructor(private ts: TaskService) { }
 
   ngOnInit(): void {
     this.getTodos();
+    this.today = new Date();
   }
 
   getTodos(): void {
@@ -55,32 +61,63 @@ export class TaskListComponent implements OnInit {
     this.ts.updateTodo(task).subscribe();
   }
 
+  reloadPage(): void {
+    location.reload();
+  }
+
   filterTasks(filter: string): void {
     switch (filter) {
       case "Completed":
-        this.ts.getTodos().subscribe(todos =>
-          this.todos = todos.filter(todo => todo.completed));
-          break;
+        this.todos = this.todos
+          .filter(todo => todo.completed);
+        break;
       case "Incomplete":
-        this.ts.getTodos().subscribe(todos =>
-          this.todos = todos.filter(todo => !todo.completed));
-          break;
-        default:
-          this.getTodos();
+        this.todos = this.todos
+          .filter(todo => !todo.completed);
+        break;
+      case "Priority":
+        this.todos = this.todos
+          .filter(todo => todo.priority);
+        break;
+      case "Not Priority":
+        this.todos = this.todos
+          .filter(todo => !todo.priority);
+        break;
+      case "Has Due Date":
+        this.todos = this.todos
+          .filter(todo => todo.dueDate);
+        break;
+      case "Overdue":
+        this.todos = this.todos
+          .filter(todo => todo.dueDate)
+          //I don't know why I need to put these two dates into NEW dates, 
+          //but it doesn't work otherwise, so... WHATEVER!
+          .filter(todo => new Date(todo.dueDate) < new Date(this.today))
+          .filter(todo => !todo.completed);
+        break;
+      case "Non-Kanban":
+        this.todos = this.todos
+          .filter(todo => !this.ts.isKanbanTask(todo));
+        break;
+      default:
+        this.getTodos();
     }
-
   }
 
   sortTasks(sort: string): void {
-    switch(sort) {
+    switch (sort) {
       case "Oldest First":
-        this.ts.getTodos().subscribe(todos =>
-          this.todos = todos.sort((a, b) => (a.createdOn < b.createdOn) ? 1 : -1));
-          break;
+        this.todos = this.todos.sort((a, b) =>
+          (new Date(a.createdOn) > new Date(b.createdOn)) ? 1 : -1);
+        break;
       case "Newest First":
-        this.ts.getTodos().subscribe(todos =>
-          this.todos = todos.sort((a, b) => (a.createdOn > b.createdOn) ? 1 : -1));
-          break;
+        this.todos = this.todos.sort((a, b) =>
+          (new Date(a.createdOn) < new Date(b.createdOn)) ? 1 : -1);
+        break;
+      case "Due Date":
+        this.todos = this.todos
+          .sort((a, b) => (new Date(a.dueDate) > new Date(b.dueDate)) ? 1 : -1);
+        break;
       default:
         this.getTodos();
     }
