@@ -10,17 +10,20 @@
     </div>
     <div class="col form-inline">
 
+        <select class="select-option" #sort (change)="sortTasks(sort.value)">
+            <option class="option" *ngFor="let sortType of sortTypes" [value]="sortType" [label]="sortType">
+            </option>
+        </select>
+
         <select class="select-option" #filter (change)="filterTasks(filter.value); filter.value='Select Filter'">
             <option class="option" *ngFor="let filter of filters" [value]="filter" [label]="filter">
             </option>
         </select>
 
-        <select class="select-option" #sort (change)="sortTasks(sort.value)">
-            <option class="option" *ngFor="let sortType of sortTypes" [value]="sortType" [label]="sortType">
-            </option>
-        </select>
+
         <button class="btn btn-secondary btn-sm" (click)="reloadPage()">Reset Filters</button>
-            <small class="text-muted" *ngIf="currentFilters.length > 0">&nbsp; Current Filters: {{currentFilters.join(", ")}}</small>
+        <small class="text-muted" *ngIf="currentFilters.length > 0">&nbsp; Current Filters:
+            {{currentFilters.join(", ")}}</small>
     </div>
     <div class="row no-gutters">
         <div class="col">
@@ -30,7 +33,11 @@
                         <input type="checkbox" class="form-check-input" [(ngModel)]="todo.completed"
                             (change)="markCompleted(todo)">
                         <button class="btn btn-priority" *ngIf="todo.priority">!</button>
-                        <a routerLink="/todos/{{todo.id}}"><b>&nbsp;{{todo.title}}</b></a>
+                        <div *ngIf="isKanbanTask(todo);then kanbanBlock;else notKanbanBlock"></div>
+                        <ng-template #kanbanBlock><a routerLink="/kanban/{{todo.id}}"><b>{{todo.title}}</b></a>
+                        </ng-template>
+                        <ng-template #notKanbanBlock><a routerLink="/todos/{{todo.id}}"><b>{{todo.title}}</b></a>
+                        </ng-template>
                         <span *ngIf="todo.dueDate"
                             [ngStyle]="{'color': (todo.dueDate | date) >= (today | date) ? 'black' : 'red'}">
                             Due On: {{todo.dueDate | date: 'fullDate'}}</span>
@@ -43,6 +50,7 @@
                                 Category: {{todo.category}} </span>
                             <span *ngIf="todo.user">
                                 User: {{todo.user}} </span>
+                            <span *ngIf="isKanbanTask(todo)">[Kanban]</span>
                         </div>
                         <button class="btn btn-delete" title="delete todo" (click)="delete(todo)">X</button>
                     </label>
