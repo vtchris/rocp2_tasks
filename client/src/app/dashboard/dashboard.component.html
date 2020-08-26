@@ -1,23 +1,29 @@
 <div class="container-fluid">
-
-    <h1 class="mt-2">Today is {{today | date: 'fullDate'}}</h1>
-    <h1> <small class="text-muted">Upcoming Tasks</small></h1>
-
     <div class="row no-gutters">
-        <div class="col">
-
+        <div class="col-lg-2 col-md-0"></div>
+        <div class="col-10">
+            <h1 class="h2 mt-2">Today is {{today | date: 'fullDate'}}</h1>
+    <h1> <small class="text-muted">Upcoming Tasks</small></h1>
             <span *ngIf="upcomingTasks.length == 0">
                 <h5 style="margin-left: 25px;">No upcoming tasks today! 😀</h5>
             </span>
+        </div>
+    
+    </div>
+   
+
+    <div class="row no-gutters">
+        <div class="col-lg-2 col-md-4">
+            <app-task-search></app-task-search>
+        </div>
+        <div class="col-lg-10 col-md-8">
+            
 
             <div class="card-deck">
-                <div class="card mb-3" *ngFor="let task of upcomingTasks">
-                    <div class="card-header">
-                        <div class="col-12">
-                            <span [ngStyle]="{'color': (task.dueDate | date) >= (today | date) ? 'black' : 'red'}">
-                                Due On: {{task.dueDate | date: 'fullDate'}}</span>
-                            <button class="btn btn-priority" *ngIf="task.priority">!</button>
-                        </div>
+                <div class="card mb-2" *ngFor="let task of upcomingTasks">
+                    <div class="card-header" [ngClass]="(task.dueDate | date) >= (today | date) ? '' : 'bg-danger text-light font-weight-bold'">    
+                        Due On: {{task.dueDate | date: 'fullDate'}}
+                        <div class="priority" *ngIf="task.priority">!</div>   
                     </div>
                     <div class="card-body">
                         <div *ngIf="isKanbanTask(task);then kanbanBlock;else notKanbanBlock"></div>
@@ -31,7 +37,7 @@
                             <div class="col-12 input-group mb-3">
                                 <div *ngIf="isKanbanTask(task);then kanbanUpdateBlock;else notKanbanUpdateBlock"></div>
                                 <ng-template #kanbanUpdateBlock>
-                                    <label>Update Status:
+                                    <label>Update Status: &nbsp;
                                         <select class="btn btn-secondary btn-sm dropdown-toggle"
                                             [(ngModel)]="task.category" (change)="updateCategory(task)">
                                             <!-- <option *ngFor="let category of categoryOptions" 
@@ -55,8 +61,5 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row no-gutters" style="margin-top: 25px;">
-        <app-task-search></app-task-search>
-    </div>
+    </div>    
 </div>
