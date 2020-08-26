@@ -10,13 +10,14 @@ import { Todo } from '../models/Todo';
 })
 export class DashboardComponent implements OnInit {
   upcomingTasks: Todo[] = [];
-  today: Date = new Date();
+  today: Date;
 
   constructor(private taskService: TaskService, private titleService: Title) { }
 
   ngOnInit(): void {
     this.setTitle('Taskadoodle');
-    this.getUpcomingTasks();    
+    this.getUpcomingTasks();
+    this.today = new Date();    
   }
 
   getUpcomingTasks(): void {
@@ -26,9 +27,9 @@ export class DashboardComponent implements OnInit {
         upcomingTasks
           .filter(task => !task.completed)  //Finds only incomplete tasks
           .filter(task=> task.dueDate) //Finds tasks that have a due date
-          .sort((a, b) => (a.dueDate > b.dueDate) ? 1 : -1) //sorts list by creation date (oldest first). 
+          .sort((a, b) => (a.dueDate > b.dueDate) ? 1 : -1) //sorts list by due date (oldest first). 
           //TODO: sort by due date instead
-          .slice(0, 5));   //Takes top 5 tasks from filtered list
+          .slice(0, 6));   //Takes top 5 tasks from filtered list
   }
 
   setTitle( newTitle: string): void {
@@ -36,6 +37,18 @@ export class DashboardComponent implements OnInit {
   }
 
   markCompleted(task: Todo): void {
+    if (this.taskService.isKanbanTask(task)){
+      this.taskService.syncKanbanCompleted(task);
+    }
+    this.taskService.updateTodo(task).subscribe();
+  }
+
+  isKanbanTask(task: Todo): boolean{
+    return this.taskService.isKanbanTask(task);
+  }
+
+  updateCategory(task: Todo): void{
+    this.taskService.syncKanbanDone(task);
     this.taskService.updateTodo(task).subscribe();
   }
 

@@ -17,6 +17,7 @@ import { TaskSearchComponent } from './task-search/task-search.component';
 import { KanbanModule } from './kanban/kanban.module';
 import { NewTaskComponent } from './new-task/new-task.component';
 import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { HeaderComponent } from './header/header.component';
     TaskDetailComponent,
     TaskSearchComponent,
     NewTaskComponent, 
-    HeaderComponent, 
+    HeaderComponent, FooterComponent,  
   ],
   imports: [
     BrowserModule,

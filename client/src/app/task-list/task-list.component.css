@@ -1,11 +1,16 @@
 /* TaskListComponent's private CSS styles */
 
+span {
+    margin-left: 20px;
+}
+
 li {
     padding: 3px 40px 3px 3px;
     margin: 2px;
     border: 1px solid darkgrey;
     border-radius: 4px;
     width: 100%;
+    float: left;
 }
 
 li:hover {
@@ -18,17 +23,66 @@ a:hover {
     text-decoration: none;
 }
 
-button.btn {
+.btn-sm {
+    padding: 1px 3px;
+    margin-left: 5px;
+    height: 30px;
+}
+
+select {
+    border: 2px solid black;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=text] {
+    border: 2px solid black;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-weight: bold;
+}
+
+label {
+    display: block;
+    padding-left: 15px;
+    text-indent: -15px;
+  }
+  input[type=checkbox] {
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    margin: 3px;
+    vertical-align: bottom;
+    position: relative;
+    top: 0;
+    *overflow: hidden;
+  }
+
+.btn-delete {
     display: flex;
     position: absolute;
-    padding: 1px;
     top: 5px;
     right: 5px;
-    width: 32px;
-    height: 32px;
+    padding: 3px;
+    width: 25px;
+    height: 25px;
     background-color: darkred !important; 
     color: white;
     font-weight: bolder;
+    font-size: 10px;
+    align-content: center;
+    justify-content: center;
+}
+
+.btn-priority {
+    padding: 1px;
+    margin-right: 5px;
+    width: 25px;
+    height: 25px;
+    background-color: darkred !important; 
+    color: white;
+    font-weight: bolder;
+    font-size: 12px;
     align-content: center;
     justify-content: center;
 }
