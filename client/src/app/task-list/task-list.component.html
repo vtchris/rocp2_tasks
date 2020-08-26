@@ -29,31 +29,57 @@
         <div class="col">
             <ul class="list-group todos">
                 <li *ngFor="let todo of todos" class="list-group-item list-group-item-action">
-                    <label class="checkbox">
-                        <input type="checkbox" class="form-check-input" [(ngModel)]="todo.completed"
-                            (change)="markCompleted(todo)">
-                        <button class="btn btn-priority" *ngIf="todo.priority">!</button>
-                        <div *ngIf="isKanbanTask(todo);then kanbanBlock;else notKanbanBlock"></div>
-                        <ng-template #kanbanBlock><a routerLink="/kanban/{{todo.id}}"><b>{{todo.title}}</b></a>
-                        </ng-template>
-                        <ng-template #notKanbanBlock><a routerLink="/todos/{{todo.id}}"><b>{{todo.title}}</b></a>
-                        </ng-template>
-                        <span *ngIf="todo.dueDate"
-                            [ngStyle]="{'color': (todo.dueDate | date) >= (today | date) ? 'black' : 'red'}">
-                            Due On: {{todo.dueDate | date: 'fullDate'}}</span>
-                        <div *ngIf="verbose" style="color: lightgray">Additional Details (verbose={{verbose}}):
-                            <span *ngIf="todo.category">
-                                ID: {{todo.id}} </span>
-                            <span> Created On:
-                                {{todo.createdOn | date: 'full'}}</span>
-                            <span *ngIf="todo.category">
-                                Category: {{todo.category}} </span>
-                            <span *ngIf="todo.user">
-                                User: {{todo.user}} </span>
-                            <span *ngIf="isKanbanTask(todo)">[Kanban]</span>
+                    <div class="row">
+                        <div class="col-sm-1">
+                            <div class="row">
+                                <div class="col-3">
+                                    <input type="checkbox" class="form-check-input" [(ngModel)]="todo.completed"
+                                        (change)="markCompleted(todo)">
+                                </div>
+                                <div class="col-3">
+                                    <button class="btn btn-priority" *ngIf="todo.priority">!</button>
+                                </div>
+                                <div class="col-6"></div>
+                            </div>
                         </div>
-                        <button class="btn btn-delete" title="delete todo" (click)="delete(todo)">X</button>
-                    </label>
+
+                        <div class="col-sm-8">
+                            <div *ngIf="isKanbanTask(todo);then kanbanBlock;else notKanbanBlock"></div>
+                            <ng-template #kanbanBlock><a routerLink="/kanban/{{todo.id}}"><b>{{todo.title}}</b></a>
+                            </ng-template>
+                            <ng-template #notKanbanBlock><a routerLink="/todos/{{todo.id}}"><b>{{todo.title}}</b></a>
+                            </ng-template>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <span *ngIf="todo.dueDate"
+                                [ngStyle]="{'color': (todo.dueDate | date) >= (today | date) ? 'black' : 'red'}">
+                                Due On: {{todo.dueDate | date: 'fullDate'}}</span>
+                        </div>
+
+                        <div class="col-sm-1">
+                            <div class="row">
+                                <div class="col-7"></div>
+                                <div class="col-5">
+                                    <button class="btn btn-delete" title="delete todo" (click)="delete(todo)">X</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-10">
+                            <div *ngIf="verbose" style="color: lightgray">Additional Details (verbose={{verbose}}):
+                                <span *ngIf="todo.category"> ID: {{todo.id}} </span>
+                                <span> Created On: {{todo.createdOn | date: 'full'}}</span>
+                                <span *ngIf="todo.category"> Category: {{todo.category}} </span>
+                                <span *ngIf="todo.user">User: {{todo.user}} </span>
+                                <span *ngIf="isKanbanTask(todo)">[Kanban]</span>
+                            </div>
+                        </div>
+                        <div class="col-1"></div>
+                    </div>
                 </li>
             </ul>
         </div>
