@@ -6,37 +6,42 @@
 
 
             <div class="card mb-3 shadow-sm" *ngFor="let task of tasks">
-                <div class="card-header" style="height: 50px;">
-                    <div class="col-12">
-                        <span *ngIf="task.dueDate"
-                            [ngStyle]="{'color': (task.dueDate | date) >= (today | date) ? 'black' : 'red'}">
-                            Due On: {{task.dueDate | date: 'fullDate'}}</span>
-                        <button class="btn btn-priority" *ngIf="task.priority">!</button>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <span><a routerLink="/kanban/{{task.id}}"><b>{{task.title}}</b></a>
-                    </span>
-                </div>
-                <div class="card-footer" style="height: 50px;">
-                    <div class="row">
-                        <div class="col-12 input-group mb-3">
-                            <div>
-                                <label>Update Status:
-                                    <select class="btn btn-secondary btn-sm dropdown-toggle" [(ngModel)]="task.category"
-                                        (change)="updateCategory(task)">
-                                        <!-- <option *ngFor="let category of categoryOptions" 
-                                                [value]="category" [label]="category">{{task.category}}</option> -->
-                                        <option value="ToDo">To Do</option>
-                                        <option value="InProgress">In Progress</option>
-                                        <option value="Done">Done</option>
-                                    </select>
-                                </label>
+                <div *ngIf="task.dueDate; then dueHeader; else blankHeader"></div>
+                    <ng-template #dueHeader>
+                        <div class="card-header"  [ngClass]="(task.dueDate | date) >= (today | date) 
+                                ? '' : 'bg-danger text-light font-weight-bold'">
+                            Due On: {{task.dueDate | date: 'fullDate'}}
+                            <button class="btn btn-priority" *ngIf="task.priority">!</button>
                             </div>
+                    </ng-template>
+                    <ng-template #blankHeader>
+                        <div class="card-header" style="height: 50px;">
+                            <button class="btn btn-priority" *ngIf="task.priority">!</button>
+                            </div>
+                    </ng-template>
+            <div class="card-body">
+                <span><a routerLink="/kanban/{{task.id}}"><b>{{task.title}}</b></a>
+                </span>
+            </div>
+            <div class="card-footer" style="height: 50px;">
+                <div class="row">
+                    <div class="col-12 input-group mb-3">
+                        <div>
+                            <label>Update Status:
+                                <select class="btn btn-secondary btn-sm dropdown-toggle" [(ngModel)]="task.category"
+                                    (change)="updateCategory(task)">
+                                    <!-- <option *ngFor="let category of categoryOptions" 
+                                                [value]="category" [label]="category">{{task.category}}</option> -->
+                                    <option value="ToDo">To Do</option>
+                                    <option value="InProgress">In Progress</option>
+                                    <option value="Done">Done</option>
+                                </select>
+                            </label>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
