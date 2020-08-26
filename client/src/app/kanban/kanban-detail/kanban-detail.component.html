@@ -32,6 +32,11 @@
                         [(ngModel)]="task.completed" name="completed">
                     Completed
                 </label>
+                <label>
+                    <input type="checkbox" class="form-check-input" 
+                        [(ngModel)]="task.priority" name="priority">
+                    Priority
+                </label>
             </div>
         </form>
         <button class="btn btn-secondary" (click)="save()">Save Task</button>
