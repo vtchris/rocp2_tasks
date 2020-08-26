@@ -29,7 +29,7 @@ export class DashboardComponent implements OnInit {
           .filter(task=> task.dueDate) //Finds tasks that have a due date
           .sort((a, b) => (a.dueDate > b.dueDate) ? 1 : -1) //sorts list by due date (oldest first). 
           //TODO: sort by due date instead
-          .slice(0, 5));   //Takes top 5 tasks from filtered list
+          .slice(0, 6));   //Takes top 5 tasks from filtered list
   }
 
   setTitle( newTitle: string): void {
