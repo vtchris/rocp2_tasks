@@ -1,8 +1,8 @@
 <div class="container-fluid">
-    <h2>Kanban Board</h2>
+    <h1> <small class="text-muted">Kanban Board</small></h1>
     <button class="btn btn-secondary" routerLink="/newkanban">Add Card</button>
     <div class="row no-gutters">
-        <div *ngFor="let category of categoryOptions" class="col-lg">
+        <div *ngFor="let category of categoryOptions" class="col col-kanban">
             <app-kanban-category category={{category}}></app-kanban-category>
         </div>
     </div>

@@ -1,27 +1,42 @@
 <div class="container-fluid">
-    <div class="category">
-        <h4>{{ category }}</h4>
-        <div>
-            <ul class="list-group">
-                <li *ngFor="let task of tasks" class="list-group-item list-group-item-action kanban-card">
-                    <span><a routerLink="/kanban/{{task.id}}"><b>{{ task.title }}</b></a></span>
-                    <span><button class="delete" (click)="delete(task)">X</button></span>
-                    <br />
-                    <span *ngIf="task.dueDate">Due: {{ task.dueDate }}</span>
-                    <br />
-                    <label>Update Status:
-                        <select class="btn btn-secondary btn-sm dropdown-toggle" [(ngModel)]="task.category" (change)="updateCategory(task)">
-                            <!-- <option *ngFor="let category of categoryOptions" 
-                                [value]="category" [label]="category">{{task.category}}</option> -->
-                            <option value="ToDo">To Do</option>
-                            <option value="InProgress">In Progress</option>
-                            <option value="Done">Done</option>
-                        </select>
-                        
-                    </label>
+    <h2> <small>{{category}}</small></h2>
 
-                </li>
-            </ul>
+    <div class="row no-gutters">
+        <div class="col">
+
+
+            <div class="card mb-3" *ngFor="let task of tasks">
+                <div class="card-header" style="height: 50px;">
+                    <div class="col-12">
+                        <span *ngIf="task.dueDate"
+                            [ngStyle]="{'color': (task.dueDate | date) >= (today | date) ? 'black' : 'red'}">
+                            Due On: {{task.dueDate | date: 'fullDate'}}</span>
+                        <button class="btn btn-priority" *ngIf="task.priority">!</button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <span><a routerLink="/kanban/{{task.id}}"><b>{{task.title}}</b></a>
+                    </span>
+                </div>
+                <div class="card-footer" style="height: 50px;">
+                    <div class="row">
+                        <div class="col-12 input-group mb-3">
+                            <div>
+                                <label>Update Status:
+                                    <select class="btn btn-secondary btn-sm dropdown-toggle" [(ngModel)]="task.category"
+                                        (change)="updateCategory(task)">
+                                        <!-- <option *ngFor="let category of categoryOptions" 
+                                                [value]="category" [label]="category">{{task.category}}</option> -->
+                                        <option value="ToDo">To Do</option>
+                                        <option value="InProgress">In Progress</option>
+                                        <option value="Done">Done</option>
+                                    </select>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
