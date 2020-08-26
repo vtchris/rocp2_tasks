@@ -42,11 +42,10 @@ export class NewTaskComponent implements OnInit {
     };
 
     this.ts.addTodo(todoJSON)
-      .subscribe(todo => {
-        this.getTodos();
-        //this.save();
-       //this.goBack()
-      });
+      .subscribe(todo => 
+        location.reload()
+        
+      );
 
   }
 
