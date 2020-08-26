@@ -1,8 +1,10 @@
 
 <div class="container-fluid">
     <h3>Add New Task</h3>
-    <button class="btn btn-secondary" (click)="goBack()">&lt; Go Back</button>
-    <button class="btn btn-secondary" routerLink="/newkanban">Make New Kanban Card Instead &gt;</button>
+    <div class="btn toolbar">
+        <button class="btn btn-secondary" (click)="goBack()">&lt; Go Back</button>
+        <button class="btn btn-outline-primary" routerLink="/newkanban">Make New Kanban Card Instead &gt;</button>    
+    </div>
     <form class="form-group">
         <div class="form-group">
             <label>New Task:
@@ -40,7 +42,7 @@
                 (click)="add(taskTodo.value, category.value, dueDate.value, completed.checked, priority.checked); taskTodo.value=''; category.value='';dueDate.value='';">
                 Add New Task
             </button>
-            <button class="btn btn-secondary"
+            <button class="btn btn-outline-danger"
                 (click)="reset()">
                 Reset Entries
             </button>
