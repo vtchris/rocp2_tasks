@@ -5,6 +5,9 @@
 a:hover {
     text-decoration: none;
 }
+.col-limit-w{
+    max-width: 1280px;
+}
 .priority {
     align-content: center;
     background-color: darkred !important; 

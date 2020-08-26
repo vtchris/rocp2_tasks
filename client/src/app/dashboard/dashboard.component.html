@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row no-gutters">       
         <!-- Col 1 Start -->
-        <div class="col-lg-10 col-md-8">
+        <div class="col-lg-10 col-md-8 col-limit-w">
             <h1 class="h2 mt-2">Today is {{today | date: 'fullDate'}}</h1>
             <h1> <small class="text-muted">Upcoming Tasks</small></h1>
             <span *ngIf="upcomingTasks.length == 0">
