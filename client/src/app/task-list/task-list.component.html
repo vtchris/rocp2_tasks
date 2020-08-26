@@ -10,7 +10,7 @@
     </div>
     <div class="col form-inline">
 
-        <select class="select-option" #filter (change)="filterTasks(filter.value)">
+        <select class="select-option" #filter (change)="filterTasks(filter.value); filter.value='Select Filter'">
             <option class="option" *ngFor="let filter of filters" [value]="filter" [label]="filter">
             </option>
         </select>
