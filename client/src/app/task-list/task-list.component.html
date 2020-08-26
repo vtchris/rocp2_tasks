@@ -20,6 +20,7 @@
             </option>
         </select>
         <button class="btn btn-secondary btn-sm" (click)="reloadPage()">Reset Filters</button>
+            <small class="text-muted" *ngIf="currentFilters.length > 0">&nbsp; Current Filters: {{currentFilters.join(", ")}}</small>
     </div>
     <div class="row no-gutters">
         <div class="col">

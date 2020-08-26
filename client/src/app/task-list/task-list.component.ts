@@ -12,6 +12,7 @@ export class TaskListComponent implements OnInit {
   todos: Todo[];
   today: Date;
   verbose: boolean = false; //turns on additional fields in tasklist for filter/sort/debugging
+  currentFilters: string[] = [];
 
   @Input() filter: string;
   filters: string[] = ["Select Filter",
@@ -66,6 +67,7 @@ export class TaskListComponent implements OnInit {
   }
 
   filterTasks(filter: string): void {
+    this.currentFilters.push(filter);
     switch (filter) {
       case "Completed":
         this.todos = this.todos
