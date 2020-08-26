@@ -10,7 +10,7 @@
     </div>
     <div class="col form-inline">
 
-        <select class="select-option" #filter (change)="filterTasks(filter.value)">
+        <select class="select-option" #filter (change)="filterTasks(filter.value); filter.value='Select Filter'">
             <option class="option" *ngFor="let filter of filters" [value]="filter" [label]="filter">
             </option>
         </select>
@@ -20,6 +20,7 @@
             </option>
         </select>
         <button class="btn btn-secondary btn-sm" (click)="reloadPage()">Reset Filters</button>
+            <small class="text-muted" *ngIf="currentFilters.length > 0">&nbsp; Current Filters: {{currentFilters.join(", ")}}</small>
     </div>
     <div class="row no-gutters">
         <div class="col">
