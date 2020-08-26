@@ -45,7 +45,7 @@ export class NewTaskComponent implements OnInit {
       .subscribe(todo => {
         this.getTodos();
         //this.save();
-       this.goBack()
+       //this.goBack()
       });
 
   }
