@@ -5,7 +5,7 @@
             <label>
                 <input #taskTodo class="form-control" type="text" placeholder="New Task" />
             </label>
-            <button class="btn btn-secondary btn-sm" (click)="add(taskTodo.value); taskTodo.value=''">Add</button>
+            <button class="btn btn-secondary btn-sm" (click)="add(taskTodo.value); taskTodo.value=''">Quick Add</button>
         </div>
     </div>
     <div class="col form-inline">
@@ -54,7 +54,7 @@
                         <div class="col-sm-2 text-nowrap">
                             <span *ngIf="todo.dueDate"
                                 [ngStyle]="{'color': (todo.dueDate | date) >= (today | date) ? 'black' : 'red'}">
-                                Due On: {{todo.dueDate | date: 'fullDate'}}</span>
+                                Due: {{todo.dueDate | date: 'EEE, MMM dd, yyy'}}</span>
                         </div>
 
                         <div class="col-sm-1">
