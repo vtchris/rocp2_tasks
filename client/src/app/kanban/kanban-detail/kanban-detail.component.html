@@ -1,45 +1,50 @@
 <div class="container-fluid">
-    <h1> <small class="text-muted">Edit Kanban Task</small></h1>
-    <button class="btn btn-secondary" (click)="goBack()">&lt; Go Back</button>
-    <div *ngIf="task">
-        <div>Task ID: {{task.id}} Created On: {{task.createdOn}}</div>
-        <form>
-            <div class="form-group">
-                <label>Task:
-                    <input class="form-control" type="text" 
-                        [(ngModel)]="task.title" name="title"
-                        value="{{task.title}}" />
-                </label>
+    <div class="row no-gutters">
+        <div class="col-md-6">
+            <h1> <small class="text-muted">Edit Kanban Task</small></h1>
+            <button class="btn btn-secondary" (click)="goBack()">&lt; Go Back</button>
+            <div *ngIf="task">
+                <div>Task ID: {{task.id}} Created On: {{task.createdOn}}</div>
+                <form>
+                    <div class="form-group">
+                        <label><b>Task:</b>
+                            <input class="form-control" type="text" [(ngModel)]="task.title" name="title"
+                                value="{{task.title}}" />
+                        </label>
+
+                        <label>Due Date:
+                            <input class="form-control" type="date" [(ngModel)]="task.dueDate" name="dueDate"
+                                value="{{task.dueDate}}" />
+                        </label>
+                        <label> Current Status:
+                            <select class="btn btn-secondary btn-sm dropdown-toggle" [(ngModel)]="task.category"
+                                name="category">
+                                <!-- <option *ngFor="let category of categoryOptions" 
+                                [value]="category" [label]="category">{{task.category}}</option> -->
+                                <option value="ToDo">To Do</option>
+                                <option value="InProgress">In Progress</option>
+                                <option value="Done">Done</option>
+                            </select>
+                        </label>
+
+                        <div class="form-group form-check">
+                            <label>
+                                <input type="checkbox" class="form-check-input" [(ngModel)]="task.completed"
+                                    name="completed">
+                                Completed
+                            </label>
+                            <label>
+                                <input type="checkbox" class="form-check-input" [(ngModel)]="task.priority"
+                                    name="priority">
+                                Priority
+                            </label>
+                        </div>
+                    </div>
+                </form>
+                <button class="btn btn-secondary" (click)="save()">Save Task</button>
+                <button class="btn btn-outline-danger" style="margin-left:20px;" (click)="delete()">Delete Task</button>
+
             </div>
-            <label>Due Date:
-                <input class="form-control" type="date" 
-                [(ngModel)]="task.dueDate" name="dueDate"
-                value="{{task.dueDate}}" />
-            </label>
-            <label> Current Status:
-                <select class="btn btn-secondary btn-sm dropdown-toggle" 
-                    [(ngModel)]="task.category" name="category">
-                    <!-- <option *ngFor="let category of categoryOptions" 
-                        [value]="category" [label]="category">{{task.category}}</option> -->
-                    <option value="ToDo">To Do</option>
-                    <option value="InProgress">In Progress</option>
-                    <option value="Done">Done</option>
-                </select>
-            </label>
-            <div class="form-group form-check">
-                <label>
-                    <input type="checkbox" class="form-check-input" 
-                        [(ngModel)]="task.completed" name="completed">
-                    Completed
-                </label>
-                <label>
-                    <input type="checkbox" class="form-check-input" 
-                        [(ngModel)]="task.priority" name="priority">
-                    Priority
-                </label>
-            </div>
-        </form>
-        <button class="btn btn-secondary" (click)="save()">Save Task</button>
-        <button class="btn btn-danger" (click)="delete()">Delete Task</button>
+        </div>
     </div>
 </div>
