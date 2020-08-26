@@ -2,12 +2,12 @@
 
     <h1 class="mt-2">Today is {{today | date: 'fullDate'}}</h1>
     <h1> <small class="text-muted">Upcoming Tasks</small></h1>
-    
+
 
 
     <div class="row no-gutters">
         <div class="col">
-          
+
             <span *ngIf="upcomingTasks.length == 0">
                 <h5 style="margin-left: 25px;">No upcoming tasks today! 😀</h5>
             </span>
@@ -15,33 +15,33 @@
             <div class="card-deck">
                 <div class="card mb-3" *ngFor="let task of upcomingTasks">
                     <div class="card-header">
-                        <span 
-                        [ngStyle]="{'color': (task.dueDate | date) >= (today | date) ? 'black' : 'red'}">
-                        Due On: {{task.dueDate | date: 'fullDate'}}</span>
-                    </div>
-                    <div class="card-body">         
-                        <span><a routerLink="/todos/{{task.id}}"><b>{{task.title}}</b></a></span>
-                    </div>
-                    <div class="card-footer">
-                        <div class="row">
-                            <div class="col-10">
-                                <label class="checkbox mr-2">
-                                    Completed  </label>                       
-                                    <input type="checkbox"  [(ngModel)]="task.completed"
-                                (change)="markCompleted(task)">
-                            </div>
-                            <div class="col-2">
-                                <button class="btn btn-priority" *ngIf="task.priority">!</button>
-                            </div>
+                        <div class="col-12">
+                            <span [ngStyle]="{'color': (task.dueDate | date) >= (today | date) ? 'black' : 'red'}">
+                                Due On: {{task.dueDate | date: 'fullDate'}}</span>
+                            <button class="btn btn-priority" *ngIf="task.priority">!</button>
                         </div>
-                        
-                       
-                        
-                        
+                    </div>
+                    <div class="card-body">
+                        <a routerLink="/todos/{{task.id}}"><b>{{task.title}}</b></a>
+                    </div>
+                    <div class="card-footer" style="height: 25%;">
+                        <div class="row">
+                            <div class="col-12 input-group mb-3">
+                                <label class="checkbox mr-2">
+                                    <input type="checkbox" [(ngModel)]="task.completed" (change)="markCompleted(task)">
+                                    Completed
+                                </label>
+                            </div>
+
+                        </div>
+
+
+
+
                     </div>
                 </div>
 
-            </div>           
+            </div>
 
         </div>
     </div>
