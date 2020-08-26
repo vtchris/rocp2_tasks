@@ -1,21 +1,12 @@
 <div class="container-fluid">
     <div class="row no-gutters">       
-        <div class="col-10">
+        <!-- Col 1 Start -->
+        <div class="col-lg-10 col-md-8">
             <h1 class="h2 mt-2">Today is {{today | date: 'fullDate'}}</h1>
             <h1> <small class="text-muted">Upcoming Tasks</small></h1>
             <span *ngIf="upcomingTasks.length == 0">
                 <h5 style="margin-left: 25px;">No upcoming tasks today! 😀</h5>
-            </span>
-        </div>  
-        <div class="col-lg-2 col-md-4 mt-2">
-            <app-task-search></app-task-search>
-        </div>  
-    </div>  
-
-    <div class="row no-gutters">       
-        <div class="col-lg-10 col-md-8">
-            
-
+            </span>       
             <div class="card-deck">
                 <div class="card mb-2" *ngFor="let task of upcomingTasks">
                     <div class="card-header" [ngClass]="(task.dueDate | date) >= (today | date) ? '' : 'bg-danger text-light font-weight-bold'">    
@@ -57,6 +48,11 @@
                     </div>
                 </div>
             </div>
-        </div>       
-    </div>    
+        </div>   
+        <!-- Col 2 Start -->
+        <div class="col-lg-2 col-md-4 mt-2">
+            <app-task-search></app-task-search>
+        </div>     
+    </div>   
+
 </div>
