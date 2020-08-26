@@ -49,6 +49,10 @@ export class NewTaskComponent implements OnInit {
 
   }
 
+  reset(): void {
+    location.reload();
+  }
+
 
   getTodos(): void {
     this.ts.getTodos()

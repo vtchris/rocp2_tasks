@@ -40,6 +40,10 @@
                 (click)="add(taskTodo.value, category.value, dueDate.value, completed.checked, priority.checked); taskTodo.value=''; category.value='';dueDate.value='';">
                 Add New Task
             </button>
+            <button class="btn btn-secondary"
+                (click)="reset()">
+                Reset Entries
+            </button>
     
         </div>
 
