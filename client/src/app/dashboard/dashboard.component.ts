@@ -47,4 +47,9 @@ export class DashboardComponent implements OnInit {
     return this.taskService.isKanbanTask(task);
   }
 
+  updateCategory(task: Todo): void{
+    this.taskService.syncKanbanDone(task);
+    this.taskService.updateTodo(task).subscribe();
+  }
+
 }
