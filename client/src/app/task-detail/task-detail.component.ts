@@ -41,12 +41,14 @@ export class TaskDetailComponent implements OnInit {
       .subscribe(() => this.goBack());
   }
 
+
   delete(todo: Todo): void {
-    this.todos = this.todos.filter(t => t !== todo)
-    this.ts.deleteTodo(todo).subscribe();
-    this.goBack();
-    this.getTodos();
+//    this.todos = this.todos.filter(t => t !== todo)
+    this.ts.deleteTodo(todo).subscribe(()=> this.goBack());
+  //  this.goBack();
+  //this.getTodos();
   }
+
 
   getTodos(): void {
     this.ts.getTodos()
