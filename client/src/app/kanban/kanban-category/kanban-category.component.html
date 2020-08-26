@@ -5,7 +5,7 @@
         <div class="col">
 
 
-            <div class="card mb-3 shadow-sm" *ngFor="let task of tasks">
+            <div class="card mb-3 shadow" *ngFor="let task of tasks">
                 <div *ngIf="task.dueDate; then dueHeader; else blankHeader"></div>
                     <ng-template #dueHeader>
                         <div class="card-header"  [ngClass]="(task.dueDate | date) >= (today | date) 
