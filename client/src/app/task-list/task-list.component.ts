@@ -108,11 +108,11 @@ export class TaskListComponent implements OnInit {
     switch (sort) {
       case "Oldest First":
         this.todos = this.todos.sort((a, b) =>
-          (new Date(a.createdOn) < new Date(b.createdOn)) ? 1 : -1);
+          (new Date(a.createdOn) > new Date(b.createdOn)) ? 1 : -1);
         break;
       case "Newest First":
         this.todos = this.todos.sort((a, b) =>
-          (new Date(a.createdOn) > new Date(b.createdOn)) ? 1 : -1);
+          (new Date(a.createdOn) < new Date(b.createdOn)) ? 1 : -1);
         break;
       case "Due Date":
         this.todos = this.todos
