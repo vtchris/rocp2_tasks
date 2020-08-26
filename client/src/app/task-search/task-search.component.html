@@ -1,10 +1,8 @@
-<div>
+<div class="search">
     <h4><label for="search-box">Task Search</label></h4>
-
-    <input #searchBox id="search-box" (input)="search(searchBox.value)" />
-
+    <input #searchBox id="search-box" class="p-3" (input)="search(searchBox.value)" />
     <ul class="">
-        <li *ngFor="let todo of todo$ | async" >
+        <li class="m-2 bg-light" *ngFor="let todo of todo$ | async" >
             <a routerLink="/todos/{{todo.id}}">
                 {{todo.title}}
             </a>
