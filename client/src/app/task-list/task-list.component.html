@@ -29,11 +29,11 @@
         <div class="col">
             <ul class="list-group todos">
                 <li *ngFor="let todo of todos" class="list-group-item list-group-item-action">
-                    <div class="row">
+                    <div class="d-flex flex-row">
                         <div class="col-sm-1">
                             <div class="row">
-                                <div class="col-3">
-                                    <input type="checkbox" class="form-check-input" [(ngModel)]="todo.completed"
+                                <div class="col-3 clearfix">
+                                    <input type="checkbox" class="form-check-input float-left" [(ngModel)]="todo.completed"
                                         (change)="markCompleted(todo)">
                                 </div>
                                 <div class="col-3">
@@ -43,7 +43,7 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-8">
+                        <div class="col-sm-8 text-nowrap">
                             <div *ngIf="isKanbanTask(todo);then kanbanBlock;else notKanbanBlock"></div>
                             <ng-template #kanbanBlock><a routerLink="/kanban/{{todo.id}}"><b>{{todo.title}}</b></a>
                             </ng-template>
@@ -51,7 +51,7 @@
                             </ng-template>
                         </div>
 
-                        <div class="col-sm-2">
+                        <div class="col-sm-2 text-nowrap">
                             <span *ngIf="todo.dueDate"
                                 [ngStyle]="{'color': (todo.dueDate | date) >= (today | date) ? 'black' : 'red'}">
                                 Due On: {{todo.dueDate | date: 'fullDate'}}</span>
@@ -60,8 +60,8 @@
                         <div class="col-sm-1">
                             <div class="row">
                                 <div class="col-7"></div>
-                                <div class="col-5">
-                                    <button class="btn btn-delete" title="delete todo" (click)="delete(todo)">X</button>
+                                <div class="col-5 clearfix">
+                                    <button class="btn btn-delete float-right" title="delete todo" (click)="delete(todo)">X</button>
                                 </div>
                             </div>
                         </div>
