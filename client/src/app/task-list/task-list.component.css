@@ -1,16 +1,10 @@
 /* TaskListComponent's private CSS styles */
 
-span {
-    margin-left: 20px;
-}
-
 li {
-    padding: 3px 40px 3px 3px;
+    padding: 3px;
     margin: 2px;
     border: 1px solid darkgrey;
     border-radius: 4px;
-    width: 100%;
-    float: left;
 }
 
 li:hover {
@@ -47,7 +41,8 @@ label {
     padding-left: 15px;
     text-indent: -15px;
   }
-  input[type=checkbox] {
+
+input[type=checkbox] {
     width: 20px;
     height: 20px;
     padding: 0;
@@ -59,10 +54,6 @@ label {
   }
 
 .btn-delete {
-    display: flex;
-    position: absolute;
-    top: 5px;
-    right: 5px;
     padding: 3px;
     width: 25px;
     height: 25px;
