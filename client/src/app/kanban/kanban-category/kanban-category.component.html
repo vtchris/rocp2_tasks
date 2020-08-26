@@ -1,38 +1,37 @@
 <div class="container-fluid">
-    <h1> <small class="text-muted">{{category}}</small></h1>
+    <h2> <small>{{category}}</small></h2>
 
     <div class="row no-gutters">
         <div class="col">
 
-            
-                <div class="card mb-3" *ngFor="let task of tasks">
-                    <div class="card-header" style="height: 50px;">
-                        <div class="col-12">
-                            <span *ngIf="task.dueDate"
-                                [ngStyle]="{'color': (task.dueDate | date) >= (today | date) ? 'black' : 'red'}">
-                                Due On: {{task.dueDate | date: 'fullDate'}}</span>
-                            <button class="btn btn-priority" *ngIf="task.priority">!</button>
-                        </div>
+
+            <div class="card mb-3" *ngFor="let task of tasks">
+                <div class="card-header" style="height: 50px;">
+                    <div class="col-12">
+                        <span *ngIf="task.dueDate"
+                            [ngStyle]="{'color': (task.dueDate | date) >= (today | date) ? 'black' : 'red'}">
+                            Due On: {{task.dueDate | date: 'fullDate'}}</span>
+                        <button class="btn btn-priority" *ngIf="task.priority">!</button>
                     </div>
-                    <div class="card-body">
-                        <span><a routerLink="/kanban/{{task.id}}"><b>{{task.title}}</b></a>
-                        </span>
-                    </div>
-                    <div class="card-footer" style="height: 50px;">
-                        <div class="row">
-                            <div class="col-12 input-group mb-3">
-                                <div>
-                                    <label>Update Status:
-                                        <select class="btn btn-secondary btn-sm dropdown-toggle"
-                                            [(ngModel)]="task.category" (change)="updateCategory(task)">
-                                            <!-- <option *ngFor="let category of categoryOptions" 
+                </div>
+                <div class="card-body">
+                    <span><a routerLink="/kanban/{{task.id}}"><b>{{task.title}}</b></a>
+                    </span>
+                </div>
+                <div class="card-footer" style="height: 50px;">
+                    <div class="row">
+                        <div class="col-12 input-group mb-3">
+                            <div>
+                                <label>Update Status:
+                                    <select class="btn btn-secondary btn-sm dropdown-toggle" [(ngModel)]="task.category"
+                                        (change)="updateCategory(task)">
+                                        <!-- <option *ngFor="let category of categoryOptions" 
                                                 [value]="category" [label]="category">{{task.category}}</option> -->
-                                            <option value="ToDo">To Do</option>
-                                            <option value="InProgress">In Progress</option>
-                                            <option value="Done">Done</option>
-                                        </select>
-                                    </label>
-                                </div>
+                                        <option value="ToDo">To Do</option>
+                                        <option value="InProgress">In Progress</option>
+                                        <option value="Done">Done</option>
+                                    </select>
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -40,3 +39,4 @@
             </div>
         </div>
     </div>
+</div>

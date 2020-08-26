@@ -1,8 +1,14 @@
-.col-lg {
-    background-color: rgb(240, 208, 205);
+.col-kanban {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(255, 236, 227);
+    border: 2px solid darkgray;
     border-radius: 4px;
     margin: 5px;
     padding: 5px;
+    width: 450px;
+    min-width: 450px;
+    max-width: 1365px;
 }
 
 button {
