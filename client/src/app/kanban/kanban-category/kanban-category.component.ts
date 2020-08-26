@@ -17,10 +17,12 @@ export class KanbanCategoryComponent implements OnInit {
   categoryOptions = ["ToDo", "InProgress", "Done"];
   tasks: Todo[] = [];
   //tasks: Todo[] = KBTASKS;
+  today: Date;
 
   constructor(private taskService: TaskService) { }
 
   ngOnInit(): void {
+    this.today = new Date();    
     this.getKanbanTasks();
     //this.category = this.getCategory(this.category);
 

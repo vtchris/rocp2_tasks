@@ -1,15 +1,15 @@
-.kanban-card {
-    background-color: rgb(250, 239, 221);
-    border: 2px solid lightgrey;
-    border-radius: 4px;
-    margin: 7px -5% 7px 5%;
-    padding: 5px 25px 5px 5px;
-    width: 90%;
-    list-style: none;
+.card {
+    min-width: 400px;
+    max-width: 400px;
+    
 }
 
-.kanban-card:hover {
-    background-color: #DDD;
+.card:hover {
+    background-color: #EEE;
+}
+
+a:hover {
+    text-decoration: none;
 }
 
 button.delete {
@@ -24,6 +24,21 @@ button.delete {
     color: white;
     font-weight: bolder;
     font-size: 10px;
+    align-content: center;
+    justify-content: center;
+}
+
+.btn-priority {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 1px;
+    width: 25px;
+    height: 25px;
+    background-color: darkred !important; 
+    color: white;
+    font-weight: bolder;
+    font-size: 12px;
     align-content: center;
     justify-content: center;
 }

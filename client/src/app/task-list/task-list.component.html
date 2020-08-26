@@ -1,51 +1,85 @@
 <div class="container-fluid">
     <div class="row no-gutters">
-        <h3>Tasks</h3>
+        <h1> <small class="text-muted">Tasks</small></h1>
         <div class="col form-inline" style="justify-content:flex-end">
             <label>
                 <input #taskTodo class="form-control" type="text" placeholder="New Task" />
             </label>
-            <button class="btn btn-secondary btn-sm" (click)="add(taskTodo.value); taskTodo.value=''">Add</button>
+            <button class="btn btn-secondary btn-sm" (click)="add(taskTodo.value); taskTodo.value=''">Quick Add</button>
         </div>
     </div>
     <div class="col form-inline">
+
+        <select class="select-option" #sort (change)="sortTasks(sort.value)">
+            <option class="option" *ngFor="let sortType of sortTypes" [value]="sortType" [label]="sortType">
+            </option>
+        </select>
 
         <select class="select-option" #filter (change)="filterTasks(filter.value); filter.value='Select Filter'">
             <option class="option" *ngFor="let filter of filters" [value]="filter" [label]="filter">
             </option>
         </select>
 
-        <select class="select-option" #sort (change)="sortTasks(sort.value)">
-            <option class="option" *ngFor="let sortType of sortTypes" [value]="sortType" [label]="sortType">
-            </option>
-        </select>
+
         <button class="btn btn-secondary btn-sm" (click)="reloadPage()">Reset Filters</button>
-            <small class="text-muted" *ngIf="currentFilters.length > 0">&nbsp; Current Filters: {{currentFilters.join(", ")}}</small>
+        <small class="text-muted" *ngIf="currentFilters.length > 0">&nbsp; Current Filters:
+            {{currentFilters.join(", ")}}</small>
     </div>
     <div class="row no-gutters">
         <div class="col">
             <ul class="list-group todos">
                 <li *ngFor="let todo of todos" class="list-group-item list-group-item-action">
-                    <label class="checkbox">
-                        <input type="checkbox" class="form-check-input" [(ngModel)]="todo.completed"
-                            (change)="markCompleted(todo)">
-                        <button class="btn btn-priority" *ngIf="todo.priority">!</button>
-                        <a routerLink="/todos/{{todo.id}}"><b>&nbsp;{{todo.title}}</b></a>
-                        <span *ngIf="todo.dueDate"
-                            [ngStyle]="{'color': (todo.dueDate | date) >= (today | date) ? 'black' : 'red'}">
-                            Due On: {{todo.dueDate | date: 'fullDate'}}</span>
-                        <div *ngIf="verbose" style="color: lightgray">Additional Details (verbose={{verbose}}):
-                            <span *ngIf="todo.category">
-                                ID: {{todo.id}} </span>
-                            <span> Created On:
-                                {{todo.createdOn | date: 'full'}}</span>
-                            <span *ngIf="todo.category">
-                                Category: {{todo.category}} </span>
-                            <span *ngIf="todo.user">
-                                User: {{todo.user}} </span>
+                    <div class="d-flex flex-row">
+                        <div class="col-sm-1">
+                            <div class="row">
+                                <div class="col-3 clearfix">
+                                    <input type="checkbox" class="form-check-input float-left" [(ngModel)]="todo.completed"
+                                        (change)="markCompleted(todo)">
+                                </div>
+                                <div class="col-3">
+                                    <button class="btn btn-priority" *ngIf="todo.priority">!</button>
+                                </div>
+                                <div class="col-6"></div>
+                            </div>
                         </div>
-                        <button class="btn btn-delete" title="delete todo" (click)="delete(todo)">X</button>
-                    </label>
+
+                        <div class="col-sm-8 text-nowrap">
+                            <div *ngIf="isKanbanTask(todo);then kanbanBlock;else notKanbanBlock"></div>
+                            <ng-template #kanbanBlock><a routerLink="/kanban/{{todo.id}}"><b>{{todo.title}}</b></a>
+                            </ng-template>
+                            <ng-template #notKanbanBlock><a routerLink="/todos/{{todo.id}}"><b>{{todo.title}}</b></a>
+                            </ng-template>
+                        </div>
+
+                        <div class="col-sm-2 text-nowrap">
+                            <span *ngIf="todo.dueDate"
+                                [ngStyle]="{'color': (todo.dueDate | date) >= (today | date) ? 'black' : 'red'}">
+                                Due: {{todo.dueDate | date: 'EEE, MMM dd, yyy'}}</span>
+                        </div>
+
+                        <div class="col-sm-1">
+                            <div class="row">
+                                <div class="col-7"></div>
+                                <div class="col-5 clearfix">
+                                    <button class="btn btn-delete float-right" title="delete todo" (click)="delete(todo)">X</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-10">
+                            <div *ngIf="verbose" style="color: lightgray">Additional Details (verbose={{verbose}}):
+                                <span *ngIf="todo.category"> ID: {{todo.id}} </span>
+                                <span> Created On: {{todo.createdOn | date: 'full'}}</span>
+                                <span *ngIf="todo.category"> Category: {{todo.category}} </span>
+                                <span *ngIf="todo.user">User: {{todo.user}} </span>
+                                <span *ngIf="isKanbanTask(todo)">[Kanban]</span>
+                            </div>
+                        </div>
+                        <div class="col-1"></div>
+                    </div>
                 </li>
             </ul>
         </div>

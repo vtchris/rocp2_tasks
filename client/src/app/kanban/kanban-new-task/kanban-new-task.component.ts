@@ -21,7 +21,7 @@ export class KanbanNewTaskComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  add(taskTitle: string, taskDueDate: Date, taskCategory: string) {
+  add(taskTitle: string, taskDueDate: Date, taskCategory: string, priority: boolean) {
     if (!taskTitle) { return; }
     else {
       let todoJSON: Todo = {
@@ -32,7 +32,7 @@ export class KanbanNewTaskComponent implements OnInit {
         "user": null,
         "dueDate": taskDueDate,
         "category": taskCategory,
-        "priority": false
+        "priority": priority
       };
       this.ts.addTodo(todoJSON).subscribe(() => location.reload());
     }

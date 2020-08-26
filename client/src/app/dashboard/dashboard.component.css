@@ -1,43 +1,28 @@
 .card{
-    min-width: 400px;
-    max-width: 400px;
-    
-    
+    min-width: 370px;
+    max-width: 370px;    
 }
-
-
-
-/* li {
-    padding: 3px;
-    margin: 2px;
-    border: 1px solid darkgrey;
-    border-radius: 4px;
-
-} */
-
-li:hover {
-    color: #607D8B;
-    background-color: #DDD;
-    left: .1em;
-}
-
 a:hover {
     text-decoration: none;
 }
-
-.btn-priority {
-    position: absolute;
-    top: 1px;
-    right: 1px;
-    padding: 1px;
-    width: 25px;
-    height: 25px;
-    background-color: darkred !important; 
-    color: white;
-    font-weight: bolder;
-    font-size: 12px;
+.col-limit-w{
+    max-width: 1280px;
+}
+.priority {
     align-content: center;
+    background-color: darkred !important; 
+    border-radius: .25rem;    
+    color: white;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bolder;
+    height: 25px;
     justify-content: center;
+    padding: 1px;
+    position: absolute;top: 10px;right: 10px;
+    text-align: center;
+    vertical-align: middle;
+    width: 25px;   
 }
 
 label {

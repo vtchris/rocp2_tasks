@@ -39,8 +39,12 @@ export class KanbanDetailComponent implements OnInit {
   }
 
   save(): void {
-          this.ts.updateTodo(this.task).subscribe();
+          this.ts.updateTodo(this.task).subscribe(() => this.goBack());
     
+  }
+
+  delete(): void {
+    this.ts.deleteTodo(this.task).subscribe(() => this.goBack());
   }
 
 }
