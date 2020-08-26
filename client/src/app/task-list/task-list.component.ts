@@ -11,7 +11,7 @@ export class TaskListComponent implements OnInit {
 
   todos: Todo[];
   today: Date;
-  verbose: boolean = true; //turns on additional fields in tasklist for filter/sort/debugging
+  verbose: boolean = false; //turns on additional fields in tasklist for filter/sort/debugging
 
   @Input() filter: string;
   filters: string[] = ["Select Filter",
