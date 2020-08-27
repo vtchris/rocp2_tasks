@@ -10,3 +10,12 @@ footer{
 a{
     width:175px;
 }
+
+@media screen and (max-width: 400px) {
+    footer{
+       justify-content: flex-start;
+      }
+    a{
+        width:80px;
+    }
+}
