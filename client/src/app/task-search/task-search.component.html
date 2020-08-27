@@ -3,9 +3,11 @@
     <input #searchBox id="search-box" class="p-3" (input)="search(searchBox.value)" />
     <ul class="">
         <li class="m-2 bg-light" *ngFor="let todo of todo$ | async" >
-            <a routerLink="/todos/{{todo.id}}">
-                {{todo.title}}
-            </a>
+            <div *ngIf="isKanbanTask(todo);then kanbanBlock;else notKanbanBlock"></div>
+            <ng-template #kanbanBlock><a routerLink="/kanban/{{todo.id}}">{{todo.title}}</a>
+            </ng-template>
+            <ng-template #notKanbanBlock><a routerLink="/todos/{{todo.id}}">{{todo.title}}</a>
+            </ng-template>
         </li>
     </ul>
 </div>
