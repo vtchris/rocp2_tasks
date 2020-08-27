@@ -1,12 +1,17 @@
-.card{
-    min-width: 370px;
-    max-width: 370px;    
+.card{    
+    min-width: 350px;
+    max-width: 450px;    
 }
 a:hover {
     text-decoration: none;
 }
 .col-limit-w{
-    max-width: 1280px;
+    max-width: 1450px;
+}
+.limit-height{
+   
+    max-height: 100px;
+    overflow-y: auto;
 }
 .priority {
     align-content: center;

@@ -32,4 +32,8 @@ export class TaskSearchComponent implements OnInit {
     );
   }
 
+  isKanbanTask(task: Todo): boolean{
+    return this.taskService.isKanbanTask(task);
+  }
+
 }

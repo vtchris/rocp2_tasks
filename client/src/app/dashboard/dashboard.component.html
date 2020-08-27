@@ -13,16 +13,16 @@
                         Due On: {{task.dueDate | date: 'fullDate'}}
                         <div class="priority" *ngIf="task.priority">!</div>   
                     </div>
-                    <div class="card-body">
+                    <div class="card-body limit-height">
                         <div *ngIf="isKanbanTask(task);then kanbanBlock;else notKanbanBlock"></div>
                         <ng-template #kanbanBlock><a routerLink="/kanban/{{task.id}}"><b>{{task.title}}</b></a>
                         </ng-template>
                         <ng-template #notKanbanBlock><a routerLink="/todos/{{task.id}}"><b>{{task.title}}</b></a>
                         </ng-template>
                     </div>
-                    <div class="card-footer" style="height: 25%;">
+                    <div class="card-footer" >
                         <div class="row">
-                            <div class="col-12 input-group mb-3">
+                            <div class="col-12 input-group">
                                 <div *ngIf="isKanbanTask(task);then kanbanUpdateBlock;else notKanbanUpdateBlock"></div>
                                 <ng-template #kanbanUpdateBlock>
                                     <label>Update Status: &nbsp;
