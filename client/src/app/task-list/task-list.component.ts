@@ -61,6 +61,9 @@ export class TaskListComponent implements OnInit {
   }
 
   markCompleted(task: Todo): void {
+    if (this.isKanbanTask(task)){
+      this.ts.syncKanbanCompleted(task);
+    }
     this.ts.updateTodo(task).subscribe();
   }
 
