@@ -7,7 +7,7 @@
 
 This is a demonstration of our angular project Taskadoodle! It is a task manager with a built in kanban board. Features include the ability to add, complete tasks, move kanban tasks on the kanban board based on status, and see upcoming or past-due tasks on the dashboard. Includes a wide variety of sorting and filtering options.
 
-![](readme_images/jenkins.gif)
+![](readme_images/jenkins.jpg)
 The back-end was built on an AWS EC2 server with Jenkins handling automatic deployments.
 
 ### Requirements
