@@ -29,9 +29,17 @@ Deployment requirements:
 </ul>
 
 ## Technologies
+![](readme_images/TechStack.jpg)
 <ul>
+    <li>NodeJS (npm)</li>
     <li>Angular</li>
+    <li>TypeScript</li>
+    <li>HTML</li>
+    <li>CSS</li>
     <li>Bootstrap</li>
+    <li>Github: Git</li>
+    <li>Jenkins</li>
+    <li>AWS: EC2, S3</li>
 </ul>
 
 ## Developers
