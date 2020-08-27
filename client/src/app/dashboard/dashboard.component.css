@@ -1,6 +1,6 @@
-.card{
-    min-width: 370px;
-    max-width: 370px;    
+.card{    
+    min-width: 350px;
+    max-width: 450px;    
 }
 a:hover {
     text-decoration: none;
